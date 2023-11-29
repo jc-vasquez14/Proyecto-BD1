@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.obtenerTodo = void 0;
+exports.nuevoRegistro = exports.obtenerTodo = void 0;
 const database_1 = require("../utils/database");
 const obtenerTodo = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const conexion = yield (0, database_1.obtenerConexionOracle)();
@@ -27,3 +27,13 @@ const obtenerTodo = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     res.end();
 });
 exports.obtenerTodo = obtenerTodo;
+const nuevoRegistro = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const conexion = yield (0, database_1.obtenerConexionOracle)();
+    const { ID_CLIENTE, NOMBRE, APELLIDO } = req.body;
+    const sql = 'insert into clientes(ID_CLIENTE, NOMBRE, APELLIDO) values(:id, :nombre, :apellido)';
+    const binds = [ID_CLIENTE, NOMBRE, APELLIDO];
+    const result = conexion.execute(sql, binds, { autoCommit: true });
+    res.json({ success: true, message: 'Cliente insertado correctamente' });
+    res.end();
+});
+exports.nuevoRegistro = nuevoRegistro;

@@ -34,9 +34,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.obtenerConexionOracle = void 0;
 const oracledb = __importStar(require("oracledb"));
+//const connectionConfig: oracledb.ConnectionAttributes = {
+//user: 'HR',
+//password: 'hr',
+//connectString: 'localhost/XE', // Reemplaza con tu información
+//};
 const connectionConfig = {
-    user: 'HR',
-    password: 'hr',
+    user: 'JOEL_CARCAMO',
+    password: '1234',
     connectString: 'localhost/XE', // Reemplaza con tu información
 };
 const obtenerConexionOracle = () => __awaiter(void 0, void 0, void 0, function* () {

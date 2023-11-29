@@ -17,3 +17,14 @@ export const obtenerTodo = async (req: Request, res: Response) => {
     res.json(usuarios.rows);
     res.end();
 }
+
+export const nuevoRegistro = async (req: Request, res: Response) => {
+    const conexion = await obtenerConexionOracle();
+    const { ID_CLIENTE, NOMBRE, APELLIDO } = req.body;
+    const sql = 'insert into clientes(ID_CLIENTE, NOMBRE, APELLIDO) values(:id, :nombre, :apellido)';
+    const binds = [ID_CLIENTE, NOMBRE, APELLIDO];
+    const result = conexion.execute(sql, binds, { autoCommit: true });
+
+    res.json({ success: true, message: 'Cliente insertado correctamente'});
+    res.end();
+}

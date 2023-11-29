@@ -1,8 +1,14 @@
 import * as oracledb from 'oracledb';
 
+//const connectionConfig: oracledb.ConnectionAttributes = {
+    //user: 'HR',
+    //password: 'hr',
+    //connectString: 'localhost/XE', // Reemplaza con tu información
+//};
+
 const connectionConfig: oracledb.ConnectionAttributes = {
-    user: 'HR',
-    password: 'hr',
+    user: 'JOEL_CARCAMO',
+    password: '1234',
     connectString: 'localhost/XE', // Reemplaza con tu información
 };
 
