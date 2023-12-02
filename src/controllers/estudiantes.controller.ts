@@ -16,6 +16,7 @@ export const obtenerTodo = async (req: Request, res: Response) => {
     
     res.json(usuarios.rows);
     res.end();
+    conexion.close();
 }
 
 export const nuevoRegistro = async (req: Request, res: Response) => {
