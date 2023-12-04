@@ -26,7 +26,7 @@ const nuevoCurso = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
                 values(:id, :tema, :organizacion, :tipo_curso, :disponibilidad, :instructor, 
                 :cuenta_instructor, :nombre)`;
     const binds = [ID_CURSO, ID_TEMA, ID_ORGANIZACION, ID_TIPO_CURSO, ID_DISPONIBILIDAD, ID_INSTRUCTOR, CUENTA_INSTRUCTOR, NOMBRE];
-    const result = conexion.execute(sql, binds, { autoCommit: false });
+    const result = conexion.execute(sql, binds, { autoCommit: true });
     res.json({ success: true, message: 'Curso insertado correctamente' });
     res.end();
 });
