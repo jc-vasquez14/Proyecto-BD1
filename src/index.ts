@@ -1,5 +1,6 @@
 import express, { Request, Response, Express } from 'express';
 import estudiantesRouter from "./routers/estudiantes.router";
+import cursosRouter from "./routers/cursos.router";
 
 const app:Express = express();
 const PORT = 3000;
@@ -7,6 +8,7 @@ const PORT = 3000;
 app.use(express.json());
 
 app.use('/estudiantes', estudiantesRouter);
+app.use('/cursos', cursosRouter);
 
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en el puerto ${PORT}`);

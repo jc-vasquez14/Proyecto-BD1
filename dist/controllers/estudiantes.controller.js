@@ -25,6 +25,7 @@ const obtenerTodo = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
                                                 order by 3 DESC`);
     res.json(usuarios.rows);
     res.end();
+    conexion.close();
 });
 exports.obtenerTodo = obtenerTodo;
 const nuevoRegistro = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
