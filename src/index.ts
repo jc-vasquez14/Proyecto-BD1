@@ -21,6 +21,14 @@ app.listen(PORT, () => {
   //connectString: 'localhost/XE'
 //};
 
+
+// Configura la conexión a Oracle
+//const dbConfig: oracledb.PoolAttributes = {
+  //user: 'DB_COURSERA',
+  //password: '1234',
+  //connectString: 'localhost/XE'
+//};
+
 //const dbConfig: oracledb.PoolAttributes = {
   //user: 'HR',
   //password: 'hr',
