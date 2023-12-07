@@ -1,6 +1,7 @@
 import express, { Request, Response, Express } from 'express';
 import estudiantesRouter from "./routers/estudiantes.router";
 import cursosRouter from "./routers/cursos.router";
+import * as oracledb from 'oracledb';
 
 const app:Express = express();
 const PORT = 3000;
