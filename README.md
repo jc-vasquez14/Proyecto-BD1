@@ -29,4 +29,4 @@
 - [x] Mostrar cursos con sus detalles
 - [x] Mostrar que cursos son gratis o pagados
 - [x] Mostrar el nombre de los cursos que estan disponibles
-- [ ] Mostrar los detalles de cada persona, id, nombre, apellido, fecha de nacimiento, cantidad de cursos completados, cantidad de cursos matriculados
+- [x] Mostrar los detalles de cada persona, id, nombre, apellido, fecha de nacimiento, cantidad de cursos completados, cantidad de cursos matriculados
