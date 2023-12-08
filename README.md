@@ -20,3 +20,5 @@
 3. Insertar organizaciones
 4. Insertar empresas
 5. Insertar módulos por cada curso
+## Funciones implementadas
+-[x] Mostrar todos los cursos disponibles
