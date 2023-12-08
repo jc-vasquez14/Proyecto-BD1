@@ -21,4 +21,12 @@
 4. Insertar empresas
 5. Insertar módulos por cada curso
 ## Funciones implementadas
-- [x] Mostrar todos los cursos disponibles
+- [x] Mostrar todo el detalle de todos los cursos disponibles
+- [x] Agregar Curso
+- [x] Mostrar los cursos que ofrece cada organizacion
+- [x] Mostrar los tipos de cursos disponibles
+- [x] Mostrar la cantidad de alumnos matriculados por curso
+- [x] Mostrar cursos con sus detalles
+- [x] Mostrar que cursos son gratis o pagados
+- [x] Mostrar el nombre de los cursos que estan disponibles
+- [X] PARA SABER LOS DETALLES DE CADA PERSONA, ID, NOMBRE, APELLIDO, FECHA DE NACIMIENTO CANTIDAD DE CURSOS COMPLETADOS, CURSOS MATRICULADOS

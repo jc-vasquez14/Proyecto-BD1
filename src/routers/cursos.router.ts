@@ -17,7 +17,7 @@ router.post('/nuevoCurso', nuevoCurso);
 router.get('/organizacion', obtenerCursosPorOrganizacion);
 
 //PARA SABER LOS TIPOS DE CURSO DISPONIBLES
-//http://localhost:3000/cursos/disponibles
+//http://localhost:3000/cursos/tipos
 router.get('/tipos', obtenerTiposCursos);
 
 //PARA SABER LA CANTIDAD DE ALUMNOS MATRICULADOS POR CURSO
