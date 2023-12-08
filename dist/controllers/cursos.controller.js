@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.obtenerCursosPorOrganizacion = exports.obtenerTiposCursos = exports.obtenerEstadisticasCursos = exports.mostrarCursosConDetalles = exports.mostrarCursosDisponibles = exports.mostrarCursos = exports.nuevoCurso = exports.obtenerTodosCursos = void 0;
+exports.insertarModulosPorCurso = exports.insertarOrganizacion = exports.obtenerCursosPorOrganizacion = exports.obtenerTiposCursos = exports.obtenerEstadisticasCursos = exports.mostrarCursosConDetalles = exports.mostrarCursosDisponibles = exports.mostrarCursos = exports.nuevoCurso = exports.obtenerTodosCursos = void 0;
 const database_1 = require("../utils/database");
 const obtenerTodosCursos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const conexion = yield (0, database_1.obtenerConexionOracle)();
@@ -161,3 +161,31 @@ const obtenerCursosPorOrganizacion = (req, res) => __awaiter(void 0, void 0, voi
     res.end();
 });
 exports.obtenerCursosPorOrganizacion = obtenerCursosPorOrganizacion;
+//--------------------------------------------------------------------------------------------------------------
+//PARA INSERTAR ORGANIZACIONES
+const insertarOrganizacion = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const conexion = yield (0, database_1.obtenerConexionOracle)();
+    const { ID_ORGANIZACION, ID_TIPO_ORGANIZACION, NOMBRE } = req.body;
+    const sql = `
+        INSERT INTO tbl_organizacion (ID_ORGANIZACION, ID_TIPO_ORGANIZACION, NOMBRE) 
+        VALUES (:id_organizacion, :id_tipo_organizacion, :nombre)`;
+    const binds = [ID_ORGANIZACION, ID_TIPO_ORGANIZACION, NOMBRE];
+    const result = conexion.execute(sql, binds, { autoCommit: true });
+    res.json({ success: true, message: 'Organización insertada correctamente' });
+    res.end();
+});
+exports.insertarOrganizacion = insertarOrganizacion;
+//--------------------------------------------------------------------------------------------------------------
+//PARA INSERTAR MODULOS
+const insertarModulosPorCurso = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const conexion = yield (0, database_1.obtenerConexionOracle)();
+    const { ID_MODULO, ID_CURSO, NOMBRE_MODULO } = req.body;
+    const sql = `
+        INSERT INTO tbl_modulos (ID_MODULO, ID_CURSO, NOMBRE_MODULO) 
+        VALUES (:id_modulo, :id_curso, :nombre_modulo)`;
+    const binds = [ID_MODULO, ID_CURSO, NOMBRE_MODULO];
+    const result = conexion.execute(sql, binds, { autoCommit: true });
+    res.json({ success: true, message: 'Módulo insertado correctamente' });
+    res.end();
+});
+exports.insertarModulosPorCurso = insertarModulosPorCurso;

@@ -12,6 +12,12 @@ router.get('/', cursos_controller_1.obtenerTodosCursos);
 //Insertando primer registro
 //http://localhost:3000/cursos/nuevoCurso
 router.post('/nuevoCurso', cursos_controller_1.nuevoCurso);
+//Insertando nueva organizacion
+//http://localhost:3000/cursos/nuevoCurso
+router.post('/nuevaOrganizacion', cursos_controller_1.insertarOrganizacion);
+//Insertando nuevos modulos
+//http://localhost:3000/cursos/nuevoCurso
+router.post('/nuevoModulo', cursos_controller_1.insertarModulosPorCurso);
 //PARA SABER LOS CURSOS QUE OFRECEN CADA ORGANIZACION
 //http://localhost:3000/cursos/organizacion
 router.get('/organizacion', cursos_controller_1.obtenerCursosPorOrganizacion);
