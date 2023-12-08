@@ -1,5 +1,6 @@
 import express from "express";
-import { mostrarCursosConDetalles, mostrarCursosDisponibles, nuevoCurso, obtenerCursosPorOrganizacion, obtenerEstadisticasCursos, obtenerTiposCursos, obtenerTodosCursos } from "../controllers/cursos.controller";
+import { mostrarCursosConDetalles, mostrarCursosDisponibles, nuevoCurso, obtenerCursosPorOrganizacion,
+     obtenerEstadisticasCursos, obtenerTiposCursos, obtenerTodosCursos, mostrarCursos} from "../controllers/cursos.controller";
 
 const router = express.Router();
 
@@ -17,7 +18,7 @@ router.get('/organizacion', obtenerCursosPorOrganizacion);
 
 //PARA SABER LOS TIPOS DE CURSO DISPONIBLES
 //http://localhost:3000/cursos/disponibles
-router.get('/disponibles', obtenerTiposCursos);
+router.get('/tipos', obtenerTiposCursos);
 
 //PARA SABER LA CANTIDAD DE ALUMNOS MATRICULADOS POR CURSO
 //http://localhost:3000/cursos/estadisticas
@@ -27,8 +28,12 @@ router.get('/estadisticas', obtenerEstadisticasCursos);
 //http://localhost:3000/cursos/detalles
 router.get('/detalles', mostrarCursosConDetalles);
 
-//PARA SABER QUE CURSOS ESTAN DISPONIBLES Y SI SON GRATIS O PAGADOS
+//PARA SABER QUE CURSOS SON GRATIS O PAGADOS
 //http://localhost:3000/cursos/tiposDisponibles
-router.get('/tiposDisponibles', mostrarCursosDisponibles);
+router.get('/disponibles', mostrarCursosDisponibles);
+
+//PARA SABER LOS CURSOS QUE ESTAN DISPONIBLES
+//http://localhost:3000/cursos/tiposDisponibles
+router.get('/todosCursos', mostrarCursos);
 
 export default router;

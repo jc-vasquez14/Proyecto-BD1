@@ -17,14 +17,17 @@ router.post('/nuevoCurso', cursos_controller_1.nuevoCurso);
 router.get('/organizacion', cursos_controller_1.obtenerCursosPorOrganizacion);
 //PARA SABER LOS TIPOS DE CURSO DISPONIBLES
 //http://localhost:3000/cursos/disponibles
-router.get('/disponibles', cursos_controller_1.obtenerTiposCursos);
+router.get('/tipos', cursos_controller_1.obtenerTiposCursos);
 //PARA SABER LA CANTIDAD DE ALUMNOS MATRICULADOS POR CURSO
 //http://localhost:3000/cursos/estadisticas
 router.get('/estadisticas', cursos_controller_1.obtenerEstadisticasCursos);
 //PARA SABER MAS DETALLES ACERCA DE CADA CURSO
 //http://localhost:3000/cursos/detalles
 router.get('/detalles', cursos_controller_1.mostrarCursosConDetalles);
-//PARA SABER QUE CURSOS ESTAN DISPONIBLES Y SI SON GRATIS O PAGADOS
+//PARA SABER QUE CURSOS SON GRATIS O PAGADOS
 //http://localhost:3000/cursos/tiposDisponibles
-router.get('/tiposDisponibles', cursos_controller_1.mostrarCursosDisponibles);
+router.get('/disponibles', cursos_controller_1.mostrarCursosDisponibles);
+//PARA SABER LOS CURSOS QUE ESTAN DISPONIBLES
+//http://localhost:3000/cursos/tiposDisponibles
+router.get('/todosCursos', cursos_controller_1.mostrarCursos);
 exports.default = router;

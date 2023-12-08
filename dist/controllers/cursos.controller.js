@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.obtenerCursosPorOrganizacion = exports.obtenerTiposCursos = exports.obtenerEstadisticasCursos = exports.mostrarCursosConDetalles = exports.mostrarCursosDisponibles = exports.nuevoCurso = exports.obtenerTodosCursos = void 0;
+exports.obtenerCursosPorOrganizacion = exports.obtenerTiposCursos = exports.obtenerEstadisticasCursos = exports.mostrarCursosConDetalles = exports.mostrarCursosDisponibles = exports.mostrarCursos = exports.nuevoCurso = exports.obtenerTodosCursos = void 0;
 const database_1 = require("../utils/database");
 const obtenerTodosCursos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const conexion = yield (0, database_1.obtenerConexionOracle)();
@@ -35,7 +35,20 @@ exports.nuevoCurso = nuevoCurso;
 //--------------------------------------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------------------------------
-//PARA SABER QUE CURSOS ESTAN DISPONIBLES Y SI SON GRATIS O PAGADOS, LA CONSULTA FUNCIONA
+//PARA SABER LOS CURSOS QUE ESTAN DISPONIBLES, LA CONSULTA FUNCIONA
+const mostrarCursos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const conexion = yield (0, database_1.obtenerConexionOracle)();
+    const query = `SELECT
+                    c.nombre AS nombre_curso
+                FROM
+                    tbl_cursos c`;
+    const result = yield conexion.execute(query);
+    res.json(result.rows);
+    res.end();
+});
+exports.mostrarCursos = mostrarCursos;
+//--------------------------------------------------------------------------------------------------------------
+//PARA SABER QUE CURSOS SON GRATIS O PAGADOS, LA CONSULTA FUNCIONA
 const mostrarCursosDisponibles = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const conexion = yield (0, database_1.obtenerConexionOracle)();
     const query = `SELECT 

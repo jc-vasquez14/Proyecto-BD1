@@ -27,10 +27,26 @@ export const nuevoCurso = async (req: Request, res: Response) => {
 //--------------------------------------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------------------------------
 
+//--------------------------------------------------------------------------------------------------------------
+
+//PARA SABER LOS CURSOS QUE ESTAN DISPONIBLES, LA CONSULTA FUNCIONA
+export const mostrarCursos = async (req: Request, res: Response) => {
+    const conexion = await obtenerConexionOracle();
+
+    const query = `SELECT
+                    c.nombre AS nombre_curso
+                FROM
+                    tbl_cursos c`;
+
+    const result = await conexion.execute(query);
+
+    res.json(result.rows);
+    res.end();
+};
 
 //--------------------------------------------------------------------------------------------------------------
 
-//PARA SABER QUE CURSOS ESTAN DISPONIBLES Y SI SON GRATIS O PAGADOS, LA CONSULTA FUNCIONA
+//PARA SABER QUE CURSOS SON GRATIS O PAGADOS, LA CONSULTA FUNCIONA
 export const mostrarCursosDisponibles = async (req: Request, res: Response) => {
     const conexion = await obtenerConexionOracle();
 

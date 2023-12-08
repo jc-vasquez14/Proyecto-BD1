@@ -12,4 +12,8 @@ router.get('/', estudiantes_controller_1.obtenerTodo);
 //Insertando primer registro
 //http://localhost:3000/estudiantes/primerReg
 router.post('/primerReg', estudiantes_controller_1.nuevoRegistro);
+//PARA SABER LOS DETALLES DE CADA PERSONA, CANTIDAD DE CURSOS COMPLETADOS,
+//CURSOS MATRICULAS, LA CONSULTA FUNCIONA
+//http://localhost:3000/estudiantes/
+router.get('/detallesPersona', estudiantes_controller_1.obtenerEstadisticasPersonas);
 exports.default = router;
