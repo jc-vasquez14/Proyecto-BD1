@@ -9,8 +9,6 @@ const router = express.Router();
 //http://localhost:3000/cursos/
 router.get('/', obtenerTodosCursos);
 
-
-
 //Insertando nuevos modulos
 //http://localhost:3000/cursos/nuevoModulo
 router.post('/nuevoModulo', insertarModulosPorCurso);
