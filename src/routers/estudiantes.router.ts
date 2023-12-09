@@ -21,7 +21,7 @@ router.post('/registrarAlumno', nuevoAlumno);
 router.get('/obtenerEstadisticasAlumno', obtenerEstadisticasAlumno);
 
 //PARA SABER LA OFERTA DE CURSOS CON TODOS SUS DETALLES
-//http://localhost:3000/estudiantes/cursosDisponibles
+//http://localhost:3000/estudiantes/ofertaCursos
 router.get('/ofertaCursos', ofertaCursos);
 
 

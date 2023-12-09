@@ -20,6 +20,6 @@ router.post('/registrarAlumno', estudiantes_controller_1.nuevoAlumno);
 //http://localhost:3000/estudiantes/obtenerEstadisticasAlumno
 router.get('/obtenerEstadisticasAlumno', estudiantes_controller_1.obtenerEstadisticasAlumno);
 //PARA SABER LA OFERTA DE CURSOS CON TODOS SUS DETALLES
-//http://localhost:3000/estudiantes/cursosDisponibles
+//http://localhost:3000/estudiantes/ofertaCursos
 router.get('/ofertaCursos', estudiantes_controller_1.ofertaCursos);
 exports.default = router;
