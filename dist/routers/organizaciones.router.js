@@ -12,4 +12,10 @@ router.post('/nuevoCurso', organizaciones_controller_1.nuevoCurso);
 //Eliminar curso desde organizacion
 //http://localhost:3000/organizaciones/eliminarCurso
 router.post('/eliminarCurso', organizaciones_controller_1.eliminarCurso);
+//Ver los instructores de cada organizacion
+//http://localhost:3000/organizaciones/verInstructoresxOrganizacion
+router.post('/instructores', organizaciones_controller_1.verInstructoresxOrganizacion);
+//Ver los instructores de cada organizacion
+//http://localhost:3000/organizaciones/cursos
+router.post('/cursos', organizaciones_controller_1.cursosOrganizacion);
 exports.default = router;

@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.eliminarCurso = exports.nuevoCurso = void 0;
+exports.cursosOrganizacion = exports.verInstructoresxOrganizacion = exports.eliminarCurso = exports.nuevoCurso = void 0;
 const database_1 = require("../utils/database");
 const nuevoCurso = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const conexion = yield (0, database_1.obtenerConexionOracle)();
@@ -27,11 +27,40 @@ exports.nuevoCurso = nuevoCurso;
 const eliminarCurso = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const conexion = yield (0, database_1.obtenerConexionOracle)();
     const { ID_CURSO } = req.body;
-    const sql = `delete from tbl_cursos
-                    where id_curso = :id`;
+    const sql = `delete from tbl_cursos where id_curso = :id`;
     const binds = [ID_CURSO];
     const result = conexion.execute(sql, binds, { autoCommit: true });
     res.json({ success: true, message: 'Curso eliminado correctamente' });
     res.end();
 });
 exports.eliminarCurso = eliminarCurso;
+const verInstructoresxOrganizacion = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const conexion = yield (0, database_1.obtenerConexionOracle)();
+    const { ID_ORGANIZACION } = req.body;
+    const sql = `select a.id_instructor, b.id_organizacion, b.nombre, c.nombre, c.apellido
+                from tbl_instructores a
+                inner join tbl_organizacion b
+                on(a.id_organizacion = b.id_organizacion)
+                inner join tbl_personas c
+                on(a.id_instructor = c.id_persona)
+                where b.id_organizacion = :id`;
+    const binds = [ID_ORGANIZACION];
+    const result = conexion.execute(sql, binds, { autoCommit: true });
+    res.json((yield result).rows);
+    res.end();
+});
+exports.verInstructoresxOrganizacion = verInstructoresxOrganizacion;
+const cursosOrganizacion = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const conexion = yield (0, database_1.obtenerConexionOracle)();
+    const { ID_ORGANIZACION } = req.body;
+    const sql = `select a.id_curso, a.nombre, b.id_organizacion, b.nombre Nombre_Organizacion
+                from tbl_cursos a
+                inner join tbl_organizacion b
+                on(a.id_organizacion = b.id_organizacion)
+                where b.id_organizacion = :id`;
+    const binds = [ID_ORGANIZACION];
+    const result = conexion.execute(sql, binds, { autoCommit: true });
+    res.json((yield result).rows);
+    res.end();
+});
+exports.cursosOrganizacion = cursosOrganizacion;
