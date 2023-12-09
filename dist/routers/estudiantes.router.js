@@ -6,6 +6,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const estudiantes_controller_1 = require("../controllers/estudiantes.controller");
 const router = express_1.default.Router();
+//Cuando un alumno vaya a logearse
+//http://localhost:3000/estudiantes/login
+router.post('/login', estudiantes_controller_1.alumnoLogin);
 //Insertando persona a la tabla personas
 //http://localhost:3000/estudiantes/registrarPersona
 router.post('/registrarPersona', estudiantes_controller_1.nuevaPersona);

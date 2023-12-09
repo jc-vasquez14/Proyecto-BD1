@@ -9,8 +9,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.obtenerEstadisticasInstructor = exports.obtenerEstadisticasAlumno = exports.nuevoAlumno = exports.nuevaPersona = void 0;
+exports.obtenerEstadisticasInstructor = exports.obtenerEstadisticasAlumno = exports.nuevoAlumno = exports.nuevaPersona = exports.alumnoLogin = void 0;
 const database_1 = require("../utils/database");
+const alumnoLogin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const conexion = yield (0, database_1.obtenerConexionOracle)();
+    const { ID_PERSONA, NOMBRE, APELLIDO, FECHA_DE_NACIMIENTO } = req.body;
+    const sql = 'insert into tbl_personas(id_persona, nombre, apellido, fecha_de_nacimiento) values(:id, :nombre, :apellido, :fecha)';
+    const binds = [ID_PERSONA, NOMBRE, APELLIDO, FECHA_DE_NACIMIENTO];
+    const result = conexion.execute(sql, binds, { autoCommit: true });
+    res.json({ success: true, message: 'Persona registrada correctamente' });
+    res.end();
+});
+exports.alumnoLogin = alumnoLogin;
 const nuevaPersona = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const conexion = yield (0, database_1.obtenerConexionOracle)();
     const { ID_PERSONA, NOMBRE, APELLIDO, FECHA_DE_NACIMIENTO } = req.body;

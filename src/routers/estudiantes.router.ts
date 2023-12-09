@@ -1,7 +1,11 @@
 import express from "express";
-import { nuevaPersona, nuevoAlumno, obtenerEstadisticasAlumno, obtenerEstadisticasInstructor} from "../controllers/estudiantes.controller";
+import { alumnoLogin, nuevaPersona, nuevoAlumno, obtenerEstadisticasAlumno, obtenerEstadisticasInstructor} from "../controllers/estudiantes.controller";
 
 const router = express.Router();
+
+//Cuando un alumno vaya a logearse
+//http://localhost:3000/estudiantes/login
+router.post('/login', alumnoLogin);
 
 //Insertando persona a la tabla personas
 //http://localhost:3000/estudiantes/registrarPersona
