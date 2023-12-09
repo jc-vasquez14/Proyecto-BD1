@@ -26,6 +26,7 @@ const insertarOrganizacion = (req, res) => __awaiter(void 0, void 0, void 0, fun
 });
 exports.insertarOrganizacion = insertarOrganizacion;
 //--------------------------------------------------------------------------------------------------------------
+//
 const nuevoCurso = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const conexion = yield (0, database_1.obtenerConexionOracle)();
     const { ID_CURSO, ID_TEMA, ID_ORGANIZACION, ID_TIPO_CURSO, ID_DISPONIBILIDAD, ID_INSTRUCTOR, CUENTA_INSTRUCTOR, NOMBRE } = req.body;
@@ -39,6 +40,8 @@ const nuevoCurso = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     res.end();
 });
 exports.nuevoCurso = nuevoCurso;
+//--------------------------------------------------------------------------------------------------------------
+//
 const eliminarCurso = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const conexion = yield (0, database_1.obtenerConexionOracle)();
     const { ID_CURSO } = req.body;
@@ -49,6 +52,8 @@ const eliminarCurso = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     res.end();
 });
 exports.eliminarCurso = eliminarCurso;
+//--------------------------------------------------------------------------------------------------------------
+//
 const verInstructoresxOrganizacion = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const conexion = yield (0, database_1.obtenerConexionOracle)();
     const { ID_ORGANIZACION } = req.body;
@@ -65,6 +70,8 @@ const verInstructoresxOrganizacion = (req, res) => __awaiter(void 0, void 0, voi
     res.end();
 });
 exports.verInstructoresxOrganizacion = verInstructoresxOrganizacion;
+//--------------------------------------------------------------------------------------------------------------
+//
 const cursosOrganizacion = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const conexion = yield (0, database_1.obtenerConexionOracle)();
     const { ID_ORGANIZACION } = req.body;
@@ -79,6 +86,8 @@ const cursosOrganizacion = (req, res) => __awaiter(void 0, void 0, void 0, funct
     res.end();
 });
 exports.cursosOrganizacion = cursosOrganizacion;
+//--------------------------------------------------------------------------------------------------------------
+//
 const alumnosOrganizacion = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const conexion = yield (0, database_1.obtenerConexionOracle)();
     const { ID_ORGANIZACION } = req.body;
@@ -99,3 +108,4 @@ const alumnosOrganizacion = (req, res) => __awaiter(void 0, void 0, void 0, func
     res.end();
 });
 exports.alumnosOrganizacion = alumnosOrganizacion;
+//--------------------------------------------------------------------------------------------------------------

@@ -11,6 +11,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.filtrarCurso = exports.matricularCurso = exports.transaccionCurso = exports.insertarModulosPorCurso = exports.obtenerCursosPorOrganizacion = exports.obtenerTiposCursos = exports.obtenerEstadisticasCursos = exports.mostrarCursosConDetalles = exports.mostrarCursosDisponibles = exports.mostrarCursos = exports.obtenerTodosCursos = void 0;
 const database_1 = require("../utils/database");
+//--------------------------------------------------------------------------------------------------------------
+//MOSTRAR TODOS LOS CURSOS
 const obtenerTodosCursos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const conexion = yield (0, database_1.obtenerConexionOracle)();
     const cursos = yield conexion.execute(`select * from tbl_cursos`);
@@ -18,9 +20,6 @@ const obtenerTodosCursos = (req, res) => __awaiter(void 0, void 0, void 0, funct
     res.end();
 });
 exports.obtenerTodosCursos = obtenerTodosCursos;
-//--------------------------------------------------------------------------------------------------------------
-//--------------------------------------------------------------------------------------------------------------
-//--------------------------------------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------------------------------
 //PARA SABER LOS CURSOS QUE ESTAN DISPONIBLES, LA CONSULTA FUNCIONA
 const mostrarCursos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -148,6 +147,7 @@ const obtenerCursosPorOrganizacion = (req, res) => __awaiter(void 0, void 0, voi
     res.end();
 });
 exports.obtenerCursosPorOrganizacion = obtenerCursosPorOrganizacion;
+//--------------------------------------------------------------------------------------------------------------
 //PARA INSERTAR MODULOS
 const insertarModulosPorCurso = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const conexion = yield (0, database_1.obtenerConexionOracle)();
@@ -191,6 +191,8 @@ const matricularCurso = (req, res) => __awaiter(void 0, void 0, void 0, function
     res.end();
 });
 exports.matricularCurso = matricularCurso;
+//--------------------------------------------------------------------------------------------------------------
+//FILTRAR CURSOS
 const filtrarCurso = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const conexion = yield (0, database_1.obtenerConexionOracle)();
     const { ID_TEMA } = req.body;
@@ -205,3 +207,4 @@ const filtrarCurso = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     res.end();
 });
 exports.filtrarCurso = filtrarCurso;
+//--------------------------------------------------------------------------------------------------------------

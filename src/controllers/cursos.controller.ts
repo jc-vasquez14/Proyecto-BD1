@@ -1,6 +1,9 @@
 import { Request, Response } from "express"
 import { obtenerConexionOracle } from "../utils/database";
 
+
+//--------------------------------------------------------------------------------------------------------------
+//MOSTRAR TODOS LOS CURSOS
 export const obtenerTodosCursos = async (req: Request, res: Response) => {
     const conexion = await obtenerConexionOracle();
     const cursos = await conexion.execute(`select * from tbl_cursos`);
@@ -9,12 +12,8 @@ export const obtenerTodosCursos = async (req: Request, res: Response) => {
     res.end();
 }
 
-//--------------------------------------------------------------------------------------------------------------
-//--------------------------------------------------------------------------------------------------------------
-//--------------------------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------------------------
-
 //PARA SABER LOS CURSOS QUE ESTAN DISPONIBLES, LA CONSULTA FUNCIONA
 export const mostrarCursos = async (req: Request, res: Response) => {
     const conexion = await obtenerConexionOracle();
@@ -30,8 +29,8 @@ export const mostrarCursos = async (req: Request, res: Response) => {
     res.end();
 };
 
-//--------------------------------------------------------------------------------------------------------------
 
+//--------------------------------------------------------------------------------------------------------------
 //PARA SABER QUE CURSOS SON GRATIS O PAGADOS, LA CONSULTA FUNCIONA
 export const mostrarCursosDisponibles = async (req: Request, res: Response) => {
     const conexion = await obtenerConexionOracle();
@@ -54,8 +53,8 @@ export const mostrarCursosDisponibles = async (req: Request, res: Response) => {
     res.end();
 };
 
-//--------------------------------------------------------------------------------------------------------------
 
+//--------------------------------------------------------------------------------------------------------------
 //PARA SABER MAS DETALLES ACERCA DE CADA CURSO, LA CONSULTA FUNCIONA
 export const mostrarCursosConDetalles = async (req: Request, res: Response) => {
     const conexion = await obtenerConexionOracle();
@@ -88,8 +87,8 @@ export const mostrarCursosConDetalles = async (req: Request, res: Response) => {
     res.end();
 };
 
-//--------------------------------------------------------------------------------------------------------------
 
+//--------------------------------------------------------------------------------------------------------------
 //PARA SABER LA CANTIDAD DE ALUMNOS MATRICULADOS POR CURSO, LA CONSULTA FUNCIONA
 export const obtenerEstadisticasCursos = async (req: Request, res: Response) => {
     const conexion = await obtenerConexionOracle();
@@ -119,7 +118,6 @@ export const obtenerEstadisticasCursos = async (req: Request, res: Response) => 
 
 
 //--------------------------------------------------------------------------------------------------------------
-
 //PARA SABER LOS TIPOS DE CURSO DISPONIBLES, LA CONSULTA FUNCIONA
 export const obtenerTiposCursos = async (req: Request, res: Response) => {
     const conexion = await obtenerConexionOracle();
@@ -146,8 +144,8 @@ export const obtenerTiposCursos = async (req: Request, res: Response) => {
     res.end();
 };
 
-//--------------------------------------------------------------------------------------------------------------
 
+//--------------------------------------------------------------------------------------------------------------
 //PARA SABER LOS CURSOS QUE OFRECEN CADA ORGANIZACION, LA CONSULTA FUNCIONA
 export const obtenerCursosPorOrganizacion = async (req: Request, res: Response) => {
     const conexion = await obtenerConexionOracle();
@@ -165,6 +163,8 @@ export const obtenerCursosPorOrganizacion = async (req: Request, res: Response) 
     res.end();
 };
 
+
+//--------------------------------------------------------------------------------------------------------------
 //PARA INSERTAR MODULOS
 export const insertarModulosPorCurso = async (req: Request, res: Response) => {
     const conexion = await obtenerConexionOracle();
@@ -181,7 +181,6 @@ export const insertarModulosPorCurso = async (req: Request, res: Response) => {
 
 
 //--------------------------------------------------------------------------------------------------------------
-
 //PARA HACER LA TRANSACCION DE UN CURSO
 export const transaccionCurso = async (req: Request, res: Response) => {
     const conexion = await obtenerConexionOracle();
@@ -200,7 +199,6 @@ export const transaccionCurso = async (req: Request, res: Response) => {
 
 
 //--------------------------------------------------------------------------------------------------------------
-
 // PARA MATRICULAR EL CURSO
 export const matricularCurso = async (req: Request, res: Response) => {
     const conexion = await obtenerConexionOracle();
@@ -217,6 +215,9 @@ export const matricularCurso = async (req: Request, res: Response) => {
     res.end();
 };
 
+
+//--------------------------------------------------------------------------------------------------------------
+//FILTRAR CURSOS
 export const filtrarCurso = async (req: Request, res: Response) => {
     
     const conexion = await obtenerConexionOracle();
@@ -233,3 +234,6 @@ export const filtrarCurso = async (req: Request, res: Response) => {
     res.json((await result).rows);
     res.end();
 };
+
+
+//--------------------------------------------------------------------------------------------------------------

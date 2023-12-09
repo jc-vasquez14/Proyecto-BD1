@@ -11,6 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.obtenerEstadisticasInstructor = exports.instructorLogin = void 0;
 const database_1 = require("../utils/database");
+//--------------------------------------------------------------------------------------------------------------
 const instructorLogin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const conexion = yield (0, database_1.obtenerConexionOracle)();
     const { cuenta_instructor, contrasenia } = req.body;
@@ -45,3 +46,4 @@ const obtenerEstadisticasInstructor = (req, res) => __awaiter(void 0, void 0, vo
     res.end();
 });
 exports.obtenerEstadisticasInstructor = obtenerEstadisticasInstructor;
+//--------------------------------------------------------------------------------------------------------------

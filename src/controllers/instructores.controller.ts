@@ -1,6 +1,8 @@
 import { Request, Response } from "express"
 import { obtenerConexionOracle } from "../utils/database";
 
+
+//--------------------------------------------------------------------------------------------------------------
 export const instructorLogin = async (req: Request, res: Response) => {
 
     const conexion = await obtenerConexionOracle();
@@ -14,7 +16,6 @@ export const instructorLogin = async (req: Request, res: Response) => {
 }
 
 //--------------------------------------------------------------------------------------------------------------
-
 //PARA SABER LOS DETALLES DE CADA PERSONA, CANTIDAD DE CURSOS COMPLETADOS, CURSOS MATRICULAS, LA CONSULTA FUNCIONA
 export const obtenerEstadisticasInstructor = async (req: Request, res: Response) => {
     const conexion = await obtenerConexionOracle();
@@ -40,3 +41,6 @@ export const obtenerEstadisticasInstructor = async (req: Request, res: Response)
     res.json(result.rows);
     res.end();
 };
+
+
+//--------------------------------------------------------------------------------------------------------------

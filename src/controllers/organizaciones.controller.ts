@@ -1,10 +1,9 @@
 import { Request, Response } from "express"
 import { obtenerConexionOracle } from "../utils/database";
 
+
 //--------------------------------------------------------------------------------------------------------------
-
 //PARA INSERTAR ORGANIZACIONES
-
 export const insertarOrganizacion = async (req: Request, res: Response) => {
     const conexion = await obtenerConexionOracle();
     const { ID_ORGANIZACION, ID_TIPO_ORGANIZACION, NOMBRE } = req.body;
@@ -18,8 +17,9 @@ export const insertarOrganizacion = async (req: Request, res: Response) => {
     res.end();
 };
 
-//--------------------------------------------------------------------------------------------------------------
 
+//--------------------------------------------------------------------------------------------------------------
+//
 export const nuevoCurso = async (req: Request, res: Response) => {
     const conexion = await obtenerConexionOracle();
     const { ID_CURSO, ID_TEMA, ID_ORGANIZACION, ID_TIPO_CURSO, ID_DISPONIBILIDAD, ID_INSTRUCTOR, CUENTA_INSTRUCTOR, NOMBRE } = req.body;
@@ -34,6 +34,9 @@ export const nuevoCurso = async (req: Request, res: Response) => {
     res.end();
 }
 
+
+//--------------------------------------------------------------------------------------------------------------
+//
 export const eliminarCurso = async (req: Request, res: Response) => {
     const conexion = await obtenerConexionOracle();
     const { ID_CURSO } = req.body;
@@ -45,6 +48,9 @@ export const eliminarCurso = async (req: Request, res: Response) => {
     res.end();
 }
 
+
+//--------------------------------------------------------------------------------------------------------------
+//
 export const verInstructoresxOrganizacion = async (req: Request, res: Response) => {
     const conexion = await obtenerConexionOracle();
     const { ID_ORGANIZACION } = req.body;
@@ -62,6 +68,9 @@ export const verInstructoresxOrganizacion = async (req: Request, res: Response) 
     res.end();
 }
 
+
+//--------------------------------------------------------------------------------------------------------------
+//
 export const cursosOrganizacion = async (req: Request, res: Response) => {
     const conexion = await obtenerConexionOracle();
     const { ID_ORGANIZACION } = req.body;
@@ -77,6 +86,9 @@ export const cursosOrganizacion = async (req: Request, res: Response) => {
     res.end();
 }
 
+
+//--------------------------------------------------------------------------------------------------------------
+//
 export const alumnosOrganizacion = async (req: Request, res: Response) => {
     const conexion = await obtenerConexionOracle();
     const { ID_ORGANIZACION } = req.body;
@@ -97,3 +109,6 @@ export const alumnosOrganizacion = async (req: Request, res: Response) => {
     res.json((await result).rows);
     res.end();
 }
+
+
+//--------------------------------------------------------------------------------------------------------------

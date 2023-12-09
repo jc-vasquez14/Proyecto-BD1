@@ -1,6 +1,9 @@
 import { Request, Response } from "express"
 import { obtenerConexionOracle } from "../utils/database";
 
+
+//--------------------------------------------------------------------------------------------------------------
+//
 export const alumnoLogin = async (req: Request, res: Response) => {
 
     const conexion = await obtenerConexionOracle();
@@ -13,6 +16,9 @@ export const alumnoLogin = async (req: Request, res: Response) => {
     res.end();
 }
 
+
+//--------------------------------------------------------------------------------------------------------------
+//
 export const nuevaPersona = async (req: Request, res: Response) => {
     const conexion = await obtenerConexionOracle();
     const { ID_PERSONA, NOMBRE, APELLIDO, FECHA_DE_NACIMIENTO } = req.body;
@@ -24,6 +30,9 @@ export const nuevaPersona = async (req: Request, res: Response) => {
     res.end();
 }
 
+
+//--------------------------------------------------------------------------------------------------------------
+//
 export const nuevoAlumno = async (req: Request, res: Response) => {
     const conexion = await obtenerConexionOracle();
     const { ID_ALUMNO, CUENTA_ALUMNO, CONTRASENIA } = req.body;
@@ -35,8 +44,8 @@ export const nuevoAlumno = async (req: Request, res: Response) => {
     res.end();
 }
 
-//--------------------------------------------------------------------------------------------------------------
 
+//--------------------------------------------------------------------------------------------------------------
 //PARA SABER LOS DETALLES DE CADA PERSONA, CANTIDAD DE CURSOS COMPLETADOS, CURSOS MATRICULAS, LA CONSULTA FUNCIONA
 export const obtenerEstadisticasAlumno = async (req: Request, res: Response) => {
     const conexion = await obtenerConexionOracle();
@@ -65,37 +74,43 @@ export const obtenerEstadisticasAlumno = async (req: Request, res: Response) => 
     res.end();
 };
 
+
+//--------------------------------------------------------------------------------------------------------------
+//
 export const ofertaCursos = async (req: Request, res: Response) => {
     const conexion = await obtenerConexionOracle();
 
     const query = `select a.id_curso, a.nombre, COUNT(b.nombre_modulo) AS cantidad_modulos, c.nombre Tema, d.nombre Empresa, e.tipo_curso, f.tipo_disponibilidad Costo, h.nombre Nombre_Instructor, h.apellido Apellido_Instructor
-    from tbl_cursos a
-    inner join tbl_modulos b
-    on(a.id_curso = b.id_curso)
-    inner join tbl_temas c
-    on(a.id_tema = c.id_tema)
-    inner join tbl_organizacion d
-    on(a.id_organizacion = d.id_organizacion)
-    inner join tbl_tipos_cursos e
-    on(a.id_tipo_curso = e.id_tipo_curso)
-    inner join tbl_disponibilidad f
-    on(a.id_disponibilidad = f.id_disponibilidad)
-    inner join tbl_instructores g
-    on(a.id_instructor = g.id_instructor)
-    inner join tbl_personas h
-    on(g.id_instructor = h.id_persona)
-    group by
-    a.id_curso, 
-    a.nombre, 
-    c.nombre, 
-    d.nombre, 
-    e.tipo_curso, 
-    f.tipo_disponibilidad, 
-    h.nombre, 
-    h.apellido`;
+                from tbl_cursos a
+                    inner join tbl_modulos b
+                    on(a.id_curso = b.id_curso)
+                    inner join tbl_temas c
+                    on(a.id_tema = c.id_tema)
+                    inner join tbl_organizacion d
+                    on(a.id_organizacion = d.id_organizacion)
+                    inner join tbl_tipos_cursos e
+                    on(a.id_tipo_curso = e.id_tipo_curso)
+                    inner join tbl_disponibilidad f
+                    on(a.id_disponibilidad = f.id_disponibilidad)
+                    inner join tbl_instructores g
+                    on(a.id_instructor = g.id_instructor)
+                    inner join tbl_personas h
+                    on(g.id_instructor = h.id_persona)
+                group by
+                    a.id_curso, 
+                    a.nombre, 
+                    c.nombre, 
+                    d.nombre, 
+                    e.tipo_curso, 
+                    f.tipo_disponibilidad, 
+                    h.nombre, 
+                    h.apellido`;
 
     const result = await conexion.execute(query);
 
     res.json(result.rows);
     res.end();
 };
+
+
+//--------------------------------------------------------------------------------------------------------------

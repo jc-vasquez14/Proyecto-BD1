@@ -11,6 +11,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ofertaCursos = exports.obtenerEstadisticasAlumno = exports.nuevoAlumno = exports.nuevaPersona = exports.alumnoLogin = void 0;
 const database_1 = require("../utils/database");
+//--------------------------------------------------------------------------------------------------------------
+//
 const alumnoLogin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const conexion = yield (0, database_1.obtenerConexionOracle)();
     const { cuenta_alumno, contrasenia } = req.body;
@@ -21,6 +23,8 @@ const alumnoLogin = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     res.end();
 });
 exports.alumnoLogin = alumnoLogin;
+//--------------------------------------------------------------------------------------------------------------
+//
 const nuevaPersona = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const conexion = yield (0, database_1.obtenerConexionOracle)();
     const { ID_PERSONA, NOMBRE, APELLIDO, FECHA_DE_NACIMIENTO } = req.body;
@@ -31,6 +35,8 @@ const nuevaPersona = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     res.end();
 });
 exports.nuevaPersona = nuevaPersona;
+//--------------------------------------------------------------------------------------------------------------
+//
 const nuevoAlumno = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const conexion = yield (0, database_1.obtenerConexionOracle)();
     const { ID_ALUMNO, CUENTA_ALUMNO, CONTRASENIA } = req.body;
@@ -67,35 +73,38 @@ const obtenerEstadisticasAlumno = (req, res) => __awaiter(void 0, void 0, void 0
     res.end();
 });
 exports.obtenerEstadisticasAlumno = obtenerEstadisticasAlumno;
+//--------------------------------------------------------------------------------------------------------------
+//
 const ofertaCursos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const conexion = yield (0, database_1.obtenerConexionOracle)();
     const query = `select a.id_curso, a.nombre, COUNT(b.nombre_modulo) AS cantidad_modulos, c.nombre Tema, d.nombre Empresa, e.tipo_curso, f.tipo_disponibilidad Costo, h.nombre Nombre_Instructor, h.apellido Apellido_Instructor
-    from tbl_cursos a
-    inner join tbl_modulos b
-    on(a.id_curso = b.id_curso)
-    inner join tbl_temas c
-    on(a.id_tema = c.id_tema)
-    inner join tbl_organizacion d
-    on(a.id_organizacion = d.id_organizacion)
-    inner join tbl_tipos_cursos e
-    on(a.id_tipo_curso = e.id_tipo_curso)
-    inner join tbl_disponibilidad f
-    on(a.id_disponibilidad = f.id_disponibilidad)
-    inner join tbl_instructores g
-    on(a.id_instructor = g.id_instructor)
-    inner join tbl_personas h
-    on(g.id_instructor = h.id_persona)
-    group by
-    a.id_curso, 
-    a.nombre, 
-    c.nombre, 
-    d.nombre, 
-    e.tipo_curso, 
-    f.tipo_disponibilidad, 
-    h.nombre, 
-    h.apellido`;
+                from tbl_cursos a
+                    inner join tbl_modulos b
+                    on(a.id_curso = b.id_curso)
+                    inner join tbl_temas c
+                    on(a.id_tema = c.id_tema)
+                    inner join tbl_organizacion d
+                    on(a.id_organizacion = d.id_organizacion)
+                    inner join tbl_tipos_cursos e
+                    on(a.id_tipo_curso = e.id_tipo_curso)
+                    inner join tbl_disponibilidad f
+                    on(a.id_disponibilidad = f.id_disponibilidad)
+                    inner join tbl_instructores g
+                    on(a.id_instructor = g.id_instructor)
+                    inner join tbl_personas h
+                    on(g.id_instructor = h.id_persona)
+                group by
+                    a.id_curso, 
+                    a.nombre, 
+                    c.nombre, 
+                    d.nombre, 
+                    e.tipo_curso, 
+                    f.tipo_disponibilidad, 
+                    h.nombre, 
+                    h.apellido`;
     const result = yield conexion.execute(query);
     res.json(result.rows);
     res.end();
 });
 exports.ofertaCursos = ofertaCursos;
+//--------------------------------------------------------------------------------------------------------------
