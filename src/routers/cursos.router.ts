@@ -1,6 +1,7 @@
 import express from "express";
 import { mostrarCursosConDetalles, mostrarCursosDisponibles, nuevoCurso, obtenerCursosPorOrganizacion,
-     obtenerEstadisticasCursos, obtenerTiposCursos, obtenerTodosCursos, mostrarCursos} from "../controllers/cursos.controller";
+     obtenerEstadisticasCursos, obtenerTiposCursos, obtenerTodosCursos, mostrarCursos,insertarOrganizacion,
+     insertarModulosPorCurso } from "../controllers/cursos.controller";
 
 const router = express.Router();
 
@@ -11,6 +12,14 @@ router.get('/', obtenerTodosCursos);
 //Insertando primer registro
 //http://localhost:3000/cursos/nuevoCurso
 router.post('/nuevoCurso', nuevoCurso);
+
+//Insertando nueva organizacion
+//http://localhost:3000/cursos/nuevoCurso
+router.post('/nuevaOrganizacion', insertarOrganizacion);
+
+//Insertando nuevos modulos
+//http://localhost:3000/cursos/nuevoCurso
+router.post('/nuevoModulo', insertarModulosPorCurso);
 
 //PARA SABER LOS CURSOS QUE OFRECEN CADA ORGANIZACION
 //http://localhost:3000/cursos/organizacion
