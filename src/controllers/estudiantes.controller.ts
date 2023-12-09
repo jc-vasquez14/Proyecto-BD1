@@ -93,3 +93,29 @@ export const obtenerEstadisticasInstructor = async (req: Request, res: Response)
     res.json(result.rows);
     res.end();
 };
+
+export const ofertaCursos = async (req: Request, res: Response) => {
+    const conexion = await obtenerConexionOracle();
+
+    const query = `select a.id_curso, a.nombre, b.nombre_modulo Modulos, c.nombre Tema, d.nombre Empresa, e.tipo_curso, f.tipo_disponibilidad Costo, h.nombre Nombre_Instructor, h.apellido Apellido_Instructor
+                    from tbl_cursos a
+                    inner join tbl_modulos b
+                    on(a.id_curso = b.id_curso)
+                    inner join tbl_temas c
+                    on(a.id_tema = c.id_tema)
+                    inner join tbl_organizacion d
+                    on(a.id_organizacion = d.id_organizacion)
+                    inner join tbl_tipos_cursos e
+                    on(a.id_tipo_curso = e.id_tipo_curso)
+                    inner join tbl_disponibilidad f
+                    on(a.id_disponibilidad = f.id_disponibilidad)
+                    inner join tbl_instructores g
+                    on(a.id_instructor = g.id_instructor)
+                    inner join tbl_personas h
+                    on(g.id_instructor = h.id_persona)`;
+
+    const result = await conexion.execute(query);
+
+    res.json(result.rows);
+    res.end();
+};

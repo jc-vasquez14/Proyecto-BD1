@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.obtenerEstadisticasInstructor = exports.obtenerEstadisticasAlumno = exports.nuevoAlumno = exports.nuevaPersona = exports.alumnoLogin = void 0;
+exports.ofertaCursos = exports.obtenerEstadisticasInstructor = exports.obtenerEstadisticasAlumno = exports.nuevoAlumno = exports.nuevaPersona = exports.alumnoLogin = void 0;
 const database_1 = require("../utils/database");
 const alumnoLogin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const conexion = yield (0, database_1.obtenerConexionOracle)();
@@ -91,3 +91,26 @@ const obtenerEstadisticasInstructor = (req, res) => __awaiter(void 0, void 0, vo
     res.end();
 });
 exports.obtenerEstadisticasInstructor = obtenerEstadisticasInstructor;
+const ofertaCursos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const conexion = yield (0, database_1.obtenerConexionOracle)();
+    const query = `select a.id_curso, a.nombre, b.nombre_modulo Modulos, c.nombre Tema, d.nombre Empresa, e.tipo_curso, f.tipo_disponibilidad Costo, h.nombre Nombre_Instructor, h.apellido Apellido_Instructor
+                    from tbl_cursos a
+                    inner join tbl_modulos b
+                    on(a.id_curso = b.id_curso)
+                    inner join tbl_temas c
+                    on(a.id_tema = c.id_tema)
+                    inner join tbl_organizacion d
+                    on(a.id_organizacion = d.id_organizacion)
+                    inner join tbl_tipos_cursos e
+                    on(a.id_tipo_curso = e.id_tipo_curso)
+                    inner join tbl_disponibilidad f
+                    on(a.id_disponibilidad = f.id_disponibilidad)
+                    inner join tbl_instructores g
+                    on(a.id_instructor = g.id_instructor)
+                    inner join tbl_personas h
+                    on(g.id_instructor = h.id_persona)`;
+    const result = yield conexion.execute(query);
+    res.json(result.rows);
+    res.end();
+});
+exports.ofertaCursos = ofertaCursos;

@@ -19,7 +19,7 @@ router.post('/registrarAlumno', estudiantes_controller_1.nuevoAlumno);
 //CANTIDAD DE CURSOS COMPLETADOS, CURSOS MATRICULADOS
 //http://localhost:3000/estudiantes/obtenerEstadisticasAlumno
 router.get('/obtenerEstadisticasAlumno', estudiantes_controller_1.obtenerEstadisticasAlumno);
-//PARA SABER LOS DETALLES DE CADA INSTRUCTOR, ID, NOMBRE, APELLIDO, CURSOS ASIGNADOS
-//http://localhost:3000/estudiantes/detallesPersona
-router.get('/detallesInstructor', estudiantes_controller_1.obtenerEstadisticasInstructor);
+//PARA SABER LA OFERTA DE CURSOS CON TODOS SUS DETALLES
+//http://localhost:3000/estudiantes/cursosDisponibles
+router.get('/ofertaCursos', estudiantes_controller_1.ofertaCursos);
 exports.default = router;

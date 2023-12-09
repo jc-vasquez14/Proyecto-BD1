@@ -1,5 +1,5 @@
 import express from "express";
-import { alumnoLogin, nuevaPersona, nuevoAlumno, obtenerEstadisticasAlumno, obtenerEstadisticasInstructor} from "../controllers/estudiantes.controller";
+import { alumnoLogin, nuevaPersona, nuevoAlumno, obtenerEstadisticasAlumno, ofertaCursos} from "../controllers/estudiantes.controller";
 
 const router = express.Router();
 
@@ -20,9 +20,9 @@ router.post('/registrarAlumno', nuevoAlumno);
 //http://localhost:3000/estudiantes/obtenerEstadisticasAlumno
 router.get('/obtenerEstadisticasAlumno', obtenerEstadisticasAlumno);
 
-//PARA SABER LOS DETALLES DE CADA INSTRUCTOR, ID, NOMBRE, APELLIDO, CURSOS ASIGNADOS
-//http://localhost:3000/estudiantes/detallesPersona
-router.get('/detallesInstructor', obtenerEstadisticasInstructor);
+//PARA SABER LA OFERTA DE CURSOS CON TODOS SUS DETALLES
+//http://localhost:3000/estudiantes/cursosDisponibles
+router.get('/ofertaCursos', ofertaCursos);
 
 
 export default router;
