@@ -9,25 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.obtenerEstadisticasPersonas = exports.nuevoRegistro = exports.obtenerTodo = void 0;
+exports.obtenerEstadisticasPersonas = exports.nuevoRegistro = void 0;
 const database_1 = require("../utils/database");
-const obtenerTodo = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const conexion = yield (0, database_1.obtenerConexionOracle)();
-    const usuarios = yield conexion.execute(`select a.department_id, b.department_name,
-                                                count(1) cantidad_empleados,
-                                                round(avg(salary),2) salario_promedio,
-                                                min(salary) salario_minimo,
-                                                max(salary) salario_maximo
-                                                from employees a
-                                                left join departments b
-                                                on (a.department_id = b.department_id)
-                                                group by a.department_id, b.department_name
-                                                order by 3 DESC`);
-    res.json(usuarios.rows);
-    res.end();
-    conexion.close();
-});
-exports.obtenerTodo = obtenerTodo;
 const nuevoRegistro = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const conexion = yield (0, database_1.obtenerConexionOracle)();
     const { ID_CLIENTE, NOMBRE, APELLIDO } = req.body;
