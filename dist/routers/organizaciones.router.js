@@ -6,6 +6,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const organizaciones_controller_1 = require("../controllers/organizaciones.controller");
 const router = express_1.default.Router();
+//Insertando nueva organizacion
+//http://localhost:3000/organizaciones/nuevaOrganizacion
+router.post('/nuevaOrganizacion', organizaciones_controller_1.insertarOrganizacion);
 //Agregando cursos desde organizacion
 //http://localhost:3000/organizaciones/nuevoCurso
 router.post('/nuevoCurso', organizaciones_controller_1.nuevoCurso);

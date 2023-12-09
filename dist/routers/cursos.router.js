@@ -9,9 +9,6 @@ const router = express_1.default.Router();
 //Obtener toda la informacion
 //http://localhost:3000/cursos/
 router.get('/', cursos_controller_1.obtenerTodosCursos);
-//Insertando nueva organizacion
-//http://localhost:3000/cursos/nuevaOrganizacion
-router.post('/nuevaOrganizacion', cursos_controller_1.insertarOrganizacion);
 //Insertando nuevos modulos
 //http://localhost:3000/cursos/nuevoModulo
 router.post('/nuevoModulo', cursos_controller_1.insertarModulosPorCurso);

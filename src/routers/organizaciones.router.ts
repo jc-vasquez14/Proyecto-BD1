@@ -1,7 +1,11 @@
 import express from "express";
-import { alumnosOrganizacion, cursosOrganizacion, eliminarCurso, nuevoCurso, verInstructoresxOrganizacion } from "../controllers/organizaciones.controller";
+import { alumnosOrganizacion, cursosOrganizacion, eliminarCurso, insertarOrganizacion, nuevoCurso, verInstructoresxOrganizacion } from "../controllers/organizaciones.controller";
 
 const router = express.Router();
+
+//Insertando nueva organizacion
+//http://localhost:3000/organizaciones/nuevaOrganizacion
+router.post('/nuevaOrganizacion', insertarOrganizacion);
 
 //Agregando cursos desde organizacion
 //http://localhost:3000/organizaciones/nuevoCurso

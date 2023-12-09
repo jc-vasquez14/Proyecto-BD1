@@ -165,24 +165,6 @@ export const obtenerCursosPorOrganizacion = async (req: Request, res: Response) 
     res.end();
 };
 
-//--------------------------------------------------------------------------------------------------------------
-
-//PARA INSERTAR ORGANIZACIONES
-export const insertarOrganizacion = async (req: Request, res: Response) => {
-    const conexion = await obtenerConexionOracle();
-    const { ID_ORGANIZACION, ID_TIPO_ORGANIZACION, NOMBRE } = req.body;
-    const sql = `
-        INSERT INTO tbl_organizacion (ID_ORGANIZACION, ID_TIPO_ORGANIZACION, NOMBRE) 
-        VALUES (:id_organizacion, :id_tipo_organizacion, :nombre)`;
-    const binds = [ID_ORGANIZACION, ID_TIPO_ORGANIZACION, NOMBRE];
-    const result = conexion.execute(sql, binds, { autoCommit: true });
-
-    res.json({ success: true, message: 'Organización insertada correctamente' });
-    res.end();
-};
-
-//--------------------------------------------------------------------------------------------------------------
-
 //PARA INSERTAR MODULOS
 export const insertarModulosPorCurso = async (req: Request, res: Response) => {
     const conexion = await obtenerConexionOracle();

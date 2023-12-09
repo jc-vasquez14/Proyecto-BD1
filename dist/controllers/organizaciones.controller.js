@@ -9,8 +9,23 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.alumnosOrganizacion = exports.cursosOrganizacion = exports.verInstructoresxOrganizacion = exports.eliminarCurso = exports.nuevoCurso = void 0;
+exports.alumnosOrganizacion = exports.cursosOrganizacion = exports.verInstructoresxOrganizacion = exports.eliminarCurso = exports.nuevoCurso = exports.insertarOrganizacion = void 0;
 const database_1 = require("../utils/database");
+//--------------------------------------------------------------------------------------------------------------
+//PARA INSERTAR ORGANIZACIONES
+const insertarOrganizacion = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const conexion = yield (0, database_1.obtenerConexionOracle)();
+    const { ID_ORGANIZACION, ID_TIPO_ORGANIZACION, NOMBRE } = req.body;
+    const sql = `
+        INSERT INTO tbl_organizacion (ID_ORGANIZACION, ID_TIPO_ORGANIZACION, NOMBRE) 
+        VALUES (:id_organizacion, :id_tipo_organizacion, :nombre)`;
+    const binds = [ID_ORGANIZACION, ID_TIPO_ORGANIZACION, NOMBRE];
+    const result = conexion.execute(sql, binds, { autoCommit: true });
+    res.json({ success: true, message: 'Organización insertada correctamente' });
+    res.end();
+});
+exports.insertarOrganizacion = insertarOrganizacion;
+//--------------------------------------------------------------------------------------------------------------
 const nuevoCurso = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const conexion = yield (0, database_1.obtenerConexionOracle)();
     const { ID_CURSO, ID_TEMA, ID_ORGANIZACION, ID_TIPO_CURSO, ID_DISPONIBILIDAD, ID_INSTRUCTOR, CUENTA_INSTRUCTOR, NOMBRE } = req.body;
