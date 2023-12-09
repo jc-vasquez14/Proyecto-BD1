@@ -31,7 +31,7 @@
 - [x] Mostrar el nombre de los cursos que estan disponibles
 - [x] Mostrar los detalles de cada persona, id, nombre, apellido, fecha de nacimiento, cantidad de cursos completados, cantidad de cursos matriculados
 ## Flujos
-1. Flujo
+1. Flujo #1
 - La persona se registra
 - Luego la insertamos en la tabla alumnos
 - Mostramos los cursos disponibles y su detalle
