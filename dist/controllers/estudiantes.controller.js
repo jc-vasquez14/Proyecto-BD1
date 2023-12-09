@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.obtenerEstadisticasPersonas = exports.nuevoAlumno = exports.nuevaPersona = void 0;
+exports.obtenerEstadisticasInstructor = exports.obtenerEstadisticasAlumno = exports.nuevoAlumno = exports.nuevaPersona = void 0;
 const database_1 = require("../utils/database");
 const nuevaPersona = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const conexion = yield (0, database_1.obtenerConexionOracle)();
@@ -33,7 +33,7 @@ const nuevoAlumno = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 exports.nuevoAlumno = nuevoAlumno;
 //--------------------------------------------------------------------------------------------------------------
 //PARA SABER LOS DETALLES DE CADA PERSONA, CANTIDAD DE CURSOS COMPLETADOS, CURSOS MATRICULAS, LA CONSULTA FUNCIONA
-const obtenerEstadisticasPersonas = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const obtenerEstadisticasAlumno = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const conexion = yield (0, database_1.obtenerConexionOracle)();
     const query = `SELECT
                     p.id_persona,
@@ -56,4 +56,28 @@ const obtenerEstadisticasPersonas = (req, res) => __awaiter(void 0, void 0, void
     res.json(result.rows);
     res.end();
 });
-exports.obtenerEstadisticasPersonas = obtenerEstadisticasPersonas;
+exports.obtenerEstadisticasAlumno = obtenerEstadisticasAlumno;
+//--------------------------------------------------------------------------------------------------------------
+//PARA SABER LOS DETALLES DE CADA PERSONA, CANTIDAD DE CURSOS COMPLETADOS, CURSOS MATRICULAS, LA CONSULTA FUNCIONA
+const obtenerEstadisticasInstructor = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const conexion = yield (0, database_1.obtenerConexionOracle)();
+    const query = `SELECT
+                    i.id_instructor,
+                    i.cuenta_instructor,
+                    p.nombre AS nombre_instructor,
+                    p.apellido AS apellido_instructor,
+                    COUNT(c.id_curso) AS cantidad_cursos_asignados
+                FROM
+                    tbl_instructores i
+                    JOIN tbl_personas p ON i.id_instructor = p.id_persona
+                    LEFT JOIN tbl_cursos c ON i.id_instructor = c.id_instructor AND i.cuenta_instructor = c.cuenta_instructor
+                GROUP BY
+                    i.id_instructor,
+                    i.cuenta_instructor,
+                    p.nombre,
+                    p.apellido`;
+    const result = yield conexion.execute(query);
+    res.json(result.rows);
+    res.end();
+});
+exports.obtenerEstadisticasInstructor = obtenerEstadisticasInstructor;

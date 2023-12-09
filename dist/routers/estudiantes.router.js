@@ -14,8 +14,11 @@ router.post('/registrarPersona', estudiantes_controller_1.nuevaPersona);
 //http://localhost:3000/estudiantes/registrarAlumno
 //CONSULTA MALA, PENDIENTE DE CAMBIOS
 router.post('/registrarAlumno', estudiantes_controller_1.nuevoAlumno);
-//PARA SABER LOS DETALLES DE CADA PERSONA, ID, NOMBRE, APELLIDO, FECHA DE NACIMIENTO
+//PARA SABER LOS DETALLES DE CADA ALUMNO, ID, NOMBRE, APELLIDO, FECHA DE NACIMIENTO
 //CANTIDAD DE CURSOS COMPLETADOS, CURSOS MATRICULADOS
 //http://localhost:3000/estudiantes/detallesPersona
-router.get('/detallesPersona', estudiantes_controller_1.obtenerEstadisticasPersonas);
+router.get('/detallesAlumno', estudiantes_controller_1.obtenerEstadisticasAlumno);
+//PARA SABER LOS DETALLES DE CADA INSTRUCTOR, ID, NOMBRE, APELLIDO, CURSOS ASIGNADOS
+//http://localhost:3000/estudiantes/detallesPersona
+router.get('/detallesInstructor', estudiantes_controller_1.obtenerEstadisticasInstructor);
 exports.default = router;
