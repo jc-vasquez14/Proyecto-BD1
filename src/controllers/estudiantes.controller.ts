@@ -1,14 +1,14 @@
 import { Request, Response } from "express"
 import { obtenerConexionOracle } from "../utils/database";
 
-export const nuevoRegistro = async (req: Request, res: Response) => {
+export const nuevoAlumno = async (req: Request, res: Response) => {
     const conexion = await obtenerConexionOracle();
-    const { ID_CLIENTE, NOMBRE, APELLIDO } = req.body;
-    const sql = 'insert into clientes(ID_CLIENTE, NOMBRE, APELLIDO) values(:id, :nombre, :apellido)';
-    const binds = [ID_CLIENTE, NOMBRE, APELLIDO];
+    const { ID_PERSONA, NOMBRE, APELLIDO, FECHA_DE_NACIMIENTO } = req.body;
+    const sql = 'insert into tbl_personas(id_persona, nombre, apellido, fecha_de_nacimiento) values(:id, :nombre, :apellido, :fecha)';
+    const binds = [ID_PERSONA, NOMBRE, APELLIDO, FECHA_DE_NACIMIENTO];
     const result = conexion.execute(sql, binds, { autoCommit: true });
 
-    res.json({ success: true, message: 'Cliente insertado correctamente'});
+    res.json({ success: true, message: 'Alumno registrado correctamente'});
     res.end();
 }
 
