@@ -14,7 +14,7 @@ const database_1 = require("../utils/database");
 const alumnoLogin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const conexion = yield (0, database_1.obtenerConexionOracle)();
     const { cuenta_alumno, contrasenia } = req.body;
-    const sql = 'SELECT * FROM usuarios WHERE cuenta_alumno = :cuenta AND contrasenia = :contrasenia';
+    const sql = 'SELECT * FROM tbl_alumnos WHERE cuenta_alumno = :cuenta AND contrasenia = :contrasenia';
     const binds = [cuenta_alumno, contrasenia];
     const result = conexion.execute(sql, binds, { autoCommit: true });
     res.json({ success: true, message: 'Inicio de sesión exitoso' });

@@ -5,7 +5,7 @@ export const alumnoLogin = async (req: Request, res: Response) => {
 
     const conexion = await obtenerConexionOracle();
     const { cuenta_alumno, contrasenia } = req.body;
-    const sql = 'SELECT * FROM usuarios WHERE cuenta_alumno = :cuenta AND contrasenia = :contrasenia';
+    const sql = 'SELECT * FROM tbl_alumnos WHERE cuenta_alumno = :cuenta AND contrasenia = :contrasenia';
     const binds = [cuenta_alumno, contrasenia];
     const result = conexion.execute(sql, binds, { autoCommit: true });
 
