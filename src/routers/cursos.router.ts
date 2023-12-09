@@ -14,11 +14,11 @@ router.get('/', obtenerTodosCursos);
 router.post('/nuevoCurso', nuevoCurso);
 
 //Insertando nueva organizacion
-//http://localhost:3000/cursos/nuevoCurso
+//http://localhost:3000/cursos/nuevaOrganizacion
 router.post('/nuevaOrganizacion', insertarOrganizacion);
 
 //Insertando nuevos modulos
-//http://localhost:3000/cursos/nuevoCurso
+//http://localhost:3000/cursos/nuevoModulo
 router.post('/nuevoModulo', insertarModulosPorCurso);
 
 //PARA SABER LOS CURSOS QUE OFRECEN CADA ORGANIZACION
@@ -38,19 +38,19 @@ router.get('/estadisticas', obtenerEstadisticasCursos);
 router.get('/detalles', mostrarCursosConDetalles);
 
 //PARA SABER QUE CURSOS SON GRATIS O PAGADOS
-//http://localhost:3000/cursos/tiposDisponibles
+//http://localhost:3000/cursos/disponibles
 router.get('/disponibles', mostrarCursosDisponibles);
 
 //PARA SABER LOS CURSOS QUE ESTAN DISPONIBLES
-//http://localhost:3000/cursos/tiposDisponibles
+//http://localhost:3000/cursos/todosCursos
 router.get('/todosCursos', mostrarCursos);
 
 //TRANSACCION DE UN CURSO
-//http://localhost:3000/estudiantes/detallesPersona
+//http://localhost:3000/estudiantes/transaccion
 router.post('/transaccion', transaccionCurso);
 
 //MATRICULA DE UN CURSO
-//http://localhost:3000/estudiantes/detallesPersona
+//http://localhost:3000/estudiantes/matricula
 router.post('/matricula', matricularCurso);
 
 

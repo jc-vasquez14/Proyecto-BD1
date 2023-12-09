@@ -13,8 +13,8 @@ router.post('/registrarAlumno', nuevoAlumno);
 
 //PARA SABER LOS DETALLES DE CADA ALUMNO, ID, NOMBRE, APELLIDO, FECHA DE NACIMIENTO
 //CANTIDAD DE CURSOS COMPLETADOS, CURSOS MATRICULADOS
-//http://localhost:3000/estudiantes/detallesPersona
-router.get('/detallesAlumno', obtenerEstadisticasAlumno);
+//http://localhost:3000/estudiantes/obtenerEstadisticasAlumno
+router.get('/obtenerEstadisticasAlumno', obtenerEstadisticasAlumno);
 
 //PARA SABER LOS DETALLES DE CADA INSTRUCTOR, ID, NOMBRE, APELLIDO, CURSOS ASIGNADOS
 //http://localhost:3000/estudiantes/detallesPersona

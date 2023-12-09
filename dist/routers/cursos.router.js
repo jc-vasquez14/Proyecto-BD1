@@ -13,10 +13,10 @@ router.get('/', cursos_controller_1.obtenerTodosCursos);
 //http://localhost:3000/cursos/nuevoCurso
 router.post('/nuevoCurso', cursos_controller_1.nuevoCurso);
 //Insertando nueva organizacion
-//http://localhost:3000/cursos/nuevoCurso
+//http://localhost:3000/cursos/nuevaOrganizacion
 router.post('/nuevaOrganizacion', cursos_controller_1.insertarOrganizacion);
 //Insertando nuevos modulos
-//http://localhost:3000/cursos/nuevoCurso
+//http://localhost:3000/cursos/nuevoModulo
 router.post('/nuevoModulo', cursos_controller_1.insertarModulosPorCurso);
 //PARA SABER LOS CURSOS QUE OFRECEN CADA ORGANIZACION
 //http://localhost:3000/cursos/organizacion
@@ -31,15 +31,15 @@ router.get('/estadisticas', cursos_controller_1.obtenerEstadisticasCursos);
 //http://localhost:3000/cursos/detalles
 router.get('/detalles', cursos_controller_1.mostrarCursosConDetalles);
 //PARA SABER QUE CURSOS SON GRATIS O PAGADOS
-//http://localhost:3000/cursos/tiposDisponibles
+//http://localhost:3000/cursos/disponibles
 router.get('/disponibles', cursos_controller_1.mostrarCursosDisponibles);
 //PARA SABER LOS CURSOS QUE ESTAN DISPONIBLES
-//http://localhost:3000/cursos/tiposDisponibles
+//http://localhost:3000/cursos/todosCursos
 router.get('/todosCursos', cursos_controller_1.mostrarCursos);
 //TRANSACCION DE UN CURSO
-//http://localhost:3000/estudiantes/detallesPersona
+//http://localhost:3000/estudiantes/transaccion
 router.post('/transaccion', cursos_controller_1.transaccionCurso);
 //MATRICULA DE UN CURSO
-//http://localhost:3000/estudiantes/detallesPersona
+//http://localhost:3000/estudiantes/matricula
 router.post('/matricula', cursos_controller_1.matricularCurso);
 exports.default = router;
