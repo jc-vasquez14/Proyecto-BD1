@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.filtrarCurso = exports.matricularCurso = exports.transaccionCurso = exports.insertarModulosPorCurso = exports.insertarOrganizacion = exports.obtenerCursosPorOrganizacion = exports.obtenerTiposCursos = exports.obtenerEstadisticasCursos = exports.mostrarCursosConDetalles = exports.mostrarCursosDisponibles = exports.mostrarCursos = exports.nuevoCurso = exports.obtenerTodosCursos = void 0;
+exports.filtrarCurso = exports.matricularCurso = exports.transaccionCurso = exports.insertarModulosPorCurso = exports.insertarOrganizacion = exports.obtenerCursosPorOrganizacion = exports.obtenerTiposCursos = exports.obtenerEstadisticasCursos = exports.mostrarCursosConDetalles = exports.mostrarCursosDisponibles = exports.mostrarCursos = exports.obtenerTodosCursos = void 0;
 const database_1 = require("../utils/database");
 const obtenerTodosCursos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const conexion = yield (0, database_1.obtenerConexionOracle)();
@@ -18,19 +18,6 @@ const obtenerTodosCursos = (req, res) => __awaiter(void 0, void 0, void 0, funct
     res.end();
 });
 exports.obtenerTodosCursos = obtenerTodosCursos;
-const nuevoCurso = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const conexion = yield (0, database_1.obtenerConexionOracle)();
-    const { ID_CURSO, ID_TEMA, ID_ORGANIZACION, ID_TIPO_CURSO, ID_DISPONIBILIDAD, ID_INSTRUCTOR, CUENTA_INSTRUCTOR, NOMBRE } = req.body;
-    const sql = `insert into tbl_cursos(ID_CURSO, ID_TEMA, ID_ORGANIZACION, ID_TIPO_CURSO, 
-                ID_DISPONIBILIDAD, ID_INSTRUCTOR, CUENTA_INSTRUCTOR, NOMBRE) 
-                values(:id, :tema, :organizacion, :tipo_curso, :disponibilidad, :instructor, 
-                :cuenta_instructor, :nombre)`;
-    const binds = [ID_CURSO, ID_TEMA, ID_ORGANIZACION, ID_TIPO_CURSO, ID_DISPONIBILIDAD, ID_INSTRUCTOR, CUENTA_INSTRUCTOR, NOMBRE];
-    const result = conexion.execute(sql, binds, { autoCommit: true });
-    res.json({ success: true, message: 'Curso insertado correctamente' });
-    res.end();
-});
-exports.nuevoCurso = nuevoCurso;
 //--------------------------------------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------------------------------

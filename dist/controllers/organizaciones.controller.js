@@ -9,14 +9,29 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instructorLogin = void 0;
-const instructorLogin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const conexion = yield obtenerConexionOracle();
-    const { cuenta_instructor, contrasenia } = req.body;
-    const sql = 'SELECT * FROM tbl_instructores WHERE cuenta_instructor = :cuenta AND contrasenia = :contrasenia';
-    const binds = [cuenta_instructor, contrasenia];
+exports.eliminarCurso = exports.nuevoCurso = void 0;
+const database_1 = require("../utils/database");
+const nuevoCurso = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const conexion = yield (0, database_1.obtenerConexionOracle)();
+    const { ID_CURSO, ID_TEMA, ID_ORGANIZACION, ID_TIPO_CURSO, ID_DISPONIBILIDAD, ID_INSTRUCTOR, CUENTA_INSTRUCTOR, NOMBRE } = req.body;
+    const sql = `insert into tbl_cursos(ID_CURSO, ID_TEMA, ID_ORGANIZACION, ID_TIPO_CURSO, 
+                ID_DISPONIBILIDAD, ID_INSTRUCTOR, CUENTA_INSTRUCTOR, NOMBRE) 
+                values(:id, :tema, :organizacion, :tipo_curso, :disponibilidad, :instructor, 
+                :cuenta_instructor, :nombre)`;
+    const binds = [ID_CURSO, ID_TEMA, ID_ORGANIZACION, ID_TIPO_CURSO, ID_DISPONIBILIDAD, ID_INSTRUCTOR, CUENTA_INSTRUCTOR, NOMBRE];
     const result = conexion.execute(sql, binds, { autoCommit: true });
-    res.json({ success: true, message: 'Inicio de sesión exitoso' });
+    res.json({ success: true, message: 'Curso insertado correctamente' });
     res.end();
 });
-exports.instructorLogin = instructorLogin;
+exports.nuevoCurso = nuevoCurso;
+const eliminarCurso = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const conexion = yield (0, database_1.obtenerConexionOracle)();
+    const { ID_CURSO } = req.body;
+    const sql = `delete from tbl_cursos
+                    where id_curso = :id`;
+    const binds = [ID_CURSO];
+    const result = conexion.execute(sql, binds, { autoCommit: true });
+    res.json({ success: true, message: 'Curso eliminado correctamente' });
+    res.end();
+});
+exports.eliminarCurso = eliminarCurso;
