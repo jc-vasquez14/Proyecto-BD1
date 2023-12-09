@@ -9,13 +9,23 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.obtenerEstadisticasPersonas = exports.nuevoAlumno = void 0;
+exports.obtenerEstadisticasPersonas = exports.nuevoAlumno = exports.nuevaPersona = void 0;
 const database_1 = require("../utils/database");
-const nuevoAlumno = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const nuevaPersona = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const conexion = yield (0, database_1.obtenerConexionOracle)();
     const { ID_PERSONA, NOMBRE, APELLIDO, FECHA_DE_NACIMIENTO } = req.body;
     const sql = 'insert into tbl_personas(id_persona, nombre, apellido, fecha_de_nacimiento) values(:id, :nombre, :apellido, :fecha)';
     const binds = [ID_PERSONA, NOMBRE, APELLIDO, FECHA_DE_NACIMIENTO];
+    const result = conexion.execute(sql, binds, { autoCommit: true });
+    res.json({ success: true, message: 'Persona registrada correctamente' });
+    res.end();
+});
+exports.nuevaPersona = nuevaPersona;
+const nuevoAlumno = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const conexion = yield (0, database_1.obtenerConexionOracle)();
+    const { ID_ALUMNO, CUENTA_ALUMNO, CONTRASENIA } = req.body;
+    const sql = 'insert into tbl_alumnos(id_alumno, cuenta_alumno, contrasenia) values(:id, :cuenta, :contrasenia)';
+    const binds = [ID_ALUMNO, CUENTA_ALUMNO, CONTRASENIA];
     const result = conexion.execute(sql, binds, { autoCommit: true });
     res.json({ success: true, message: 'Alumno registrado correctamente' });
     res.end();

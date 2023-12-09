@@ -1,11 +1,22 @@
 import { Request, Response } from "express"
 import { obtenerConexionOracle } from "../utils/database";
 
-export const nuevoAlumno = async (req: Request, res: Response) => {
+export const nuevaPersona = async (req: Request, res: Response) => {
     const conexion = await obtenerConexionOracle();
     const { ID_PERSONA, NOMBRE, APELLIDO, FECHA_DE_NACIMIENTO } = req.body;
     const sql = 'insert into tbl_personas(id_persona, nombre, apellido, fecha_de_nacimiento) values(:id, :nombre, :apellido, :fecha)';
     const binds = [ID_PERSONA, NOMBRE, APELLIDO, FECHA_DE_NACIMIENTO];
+    const result = conexion.execute(sql, binds, { autoCommit: true });
+
+    res.json({ success: true, message: 'Persona registrada correctamente'});
+    res.end();
+}
+
+export const nuevoAlumno = async (req: Request, res: Response) => {
+    const conexion = await obtenerConexionOracle();
+    const { ID_ALUMNO, CUENTA_ALUMNO, CONTRASENIA } = req.body;
+    const sql = 'insert into tbl_alumnos(id_alumno, cuenta_alumno, contrasenia) values(:id, :cuenta, :contrasenia)';
+    const binds = [ID_ALUMNO, CUENTA_ALUMNO, CONTRASENIA];
     const result = conexion.execute(sql, binds, { autoCommit: true });
 
     res.json({ success: true, message: 'Alumno registrado correctamente'});

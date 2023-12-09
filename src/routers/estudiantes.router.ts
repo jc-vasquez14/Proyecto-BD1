@@ -1,9 +1,14 @@
 import express from "express";
-import { nuevoAlumno, obtenerEstadisticasPersonas} from "../controllers/estudiantes.controller";
+import { nuevaPersona, nuevoAlumno, obtenerEstadisticasPersonas} from "../controllers/estudiantes.controller";
 
 const router = express.Router();
 
-//Insertando primer registro
+//Insertando persona a la tabla personas
+//http://localhost:3000/estudiantes/registrarPersona
+//CONSULTA MALA, PENDIENTE DE CAMBIOS
+router.post('/registrarPersona', nuevaPersona);
+
+//Inserta alumno a la tabla alumnos cuando ya existe en la tabla personas
 //http://localhost:3000/estudiantes/registrarAlumno
 //CONSULTA MALA, PENDIENTE DE CAMBIOS
 router.post('/registrarAlumno', nuevoAlumno);
