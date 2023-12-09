@@ -8,11 +8,9 @@ const estudiantes_controller_1 = require("../controllers/estudiantes.controller"
 const router = express_1.default.Router();
 //Insertando persona a la tabla personas
 //http://localhost:3000/estudiantes/registrarPersona
-//CONSULTA MALA, PENDIENTE DE CAMBIOS
 router.post('/registrarPersona', estudiantes_controller_1.nuevaPersona);
 //Inserta alumno a la tabla alumnos cuando ya existe en la tabla personas
 //http://localhost:3000/estudiantes/registrarAlumno
-//CONSULTA MALA, PENDIENTE DE CAMBIOS
 router.post('/registrarAlumno', estudiantes_controller_1.nuevoAlumno);
 //PARA SABER LOS DETALLES DE CADA ALUMNO, ID, NOMBRE, APELLIDO, FECHA DE NACIMIENTO
 //CANTIDAD DE CURSOS COMPLETADOS, CURSOS MATRICULADOS
