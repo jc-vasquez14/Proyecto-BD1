@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.insertarModulosPorCurso = exports.insertarOrganizacion = exports.obtenerCursosPorOrganizacion = exports.obtenerTiposCursos = exports.obtenerEstadisticasCursos = exports.mostrarCursosConDetalles = exports.mostrarCursosDisponibles = exports.mostrarCursos = exports.nuevoCurso = exports.obtenerTodosCursos = void 0;
+exports.matricularCurso = exports.transaccionCurso = exports.insertarModulosPorCurso = exports.insertarOrganizacion = exports.obtenerCursosPorOrganizacion = exports.obtenerTiposCursos = exports.obtenerEstadisticasCursos = exports.mostrarCursosConDetalles = exports.mostrarCursosDisponibles = exports.mostrarCursos = exports.nuevoCurso = exports.obtenerTodosCursos = void 0;
 const database_1 = require("../utils/database");
 const obtenerTodosCursos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const conexion = yield (0, database_1.obtenerConexionOracle)();
@@ -189,3 +189,33 @@ const insertarModulosPorCurso = (req, res) => __awaiter(void 0, void 0, void 0, 
     res.end();
 });
 exports.insertarModulosPorCurso = insertarModulosPorCurso;
+//--------------------------------------------------------------------------------------------------------------
+//PARA HACER LA TRANSACCION DE UN CURSO
+const transaccionCurso = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const conexion = yield (0, database_1.obtenerConexionOracle)();
+    const { ID_TRANSACCION, ID_CURSO, ID_MET_PAGO, ID_ALUMNO, CUENTA_ALUMNO, FECHA_TRANSACCION } = req.body;
+    // Insertar en tbl_transacciones
+    const sqlTransaccion = `
+        INSERT INTO tbl_transacciones (ID_TRANSACCION, ID_CURSO, ID_MET_PAGO, ID_ALUMNO, CUENTA_ALUMNO, FECHA_TRANSACCION) 
+        VALUES (:id_transaccion, :id_curso, :id_met_pago, :id_alumno, :cuenta_alumno, :fecha_transaccion)`;
+    const bindsTransaccion = [ID_TRANSACCION, ID_CURSO, ID_MET_PAGO, ID_ALUMNO, CUENTA_ALUMNO, FECHA_TRANSACCION];
+    const resultTransaccion = conexion.execute(sqlTransaccion, bindsTransaccion, { autoCommit: true });
+    res.json({ success: true, message: 'Transacción realizada correctamente' });
+    res.end();
+});
+exports.transaccionCurso = transaccionCurso;
+//--------------------------------------------------------------------------------------------------------------
+// PARA MATRICULAR EL CURSO
+const matricularCurso = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const conexion = yield (0, database_1.obtenerConexionOracle)();
+    const { ID_MATRICULA, ID_TRANSACCION, ID_CURSO, ID_ALUMNO, CUENTA_ALUMNO } = req.body;
+    // Insertar en tbl_matriculas
+    const sqlMatricula = `
+        INSERT INTO tbl_matriculas (ID_MATRICULA, ID_TRANSACCION, ID_CURSO, ID_ALUMNO, CUENTA_ALUMNO) 
+        VALUES (:id_matricula, :id_transaccion, :id_curso, :id_alumno, :cuenta_alumno)`;
+    const bindsMatricula = [ID_MATRICULA, ID_TRANSACCION, ID_CURSO, ID_ALUMNO, CUENTA_ALUMNO];
+    const resultMatricula = conexion.execute(sqlMatricula, bindsMatricula, { autoCommit: true });
+    res.json({ success: true, message: 'Curso matriculado correctamente' });
+    res.end();
+});
+exports.matricularCurso = matricularCurso;

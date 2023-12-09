@@ -210,3 +210,41 @@ export const insertarModulosPorCurso = async (req: Request, res: Response) => {
     res.json({ success: true, message: 'Módulo insertado correctamente' });
     res.end();
 };
+
+
+//--------------------------------------------------------------------------------------------------------------
+
+//PARA HACER LA TRANSACCION DE UN CURSO
+export const transaccionCurso = async (req: Request, res: Response) => {
+    const conexion = await obtenerConexionOracle();
+    const { ID_TRANSACCION, ID_CURSO, ID_MET_PAGO, ID_ALUMNO, CUENTA_ALUMNO, FECHA_TRANSACCION } = req.body;
+
+    // Insertar en tbl_transacciones
+    const sqlTransaccion = `
+        INSERT INTO tbl_transacciones (ID_TRANSACCION, ID_CURSO, ID_MET_PAGO, ID_ALUMNO, CUENTA_ALUMNO, FECHA_TRANSACCION) 
+        VALUES (:id_transaccion, :id_curso, :id_met_pago, :id_alumno, :cuenta_alumno, :fecha_transaccion)`;
+    const bindsTransaccion = [ID_TRANSACCION, ID_CURSO, ID_MET_PAGO, ID_ALUMNO, CUENTA_ALUMNO, FECHA_TRANSACCION];
+    const resultTransaccion = conexion.execute(sqlTransaccion, bindsTransaccion, { autoCommit: true });
+
+    res.json({ success: true, message: 'Transacción realizada correctamente' });
+    res.end();
+};
+
+
+//--------------------------------------------------------------------------------------------------------------
+
+// PARA MATRICULAR EL CURSO
+export const matricularCurso = async (req: Request, res: Response) => {
+    const conexion = await obtenerConexionOracle();
+    const { ID_MATRICULA, ID_TRANSACCION, ID_CURSO, ID_ALUMNO, CUENTA_ALUMNO } = req.body;
+
+    // Insertar en tbl_matriculas
+    const sqlMatricula = `
+        INSERT INTO tbl_matriculas (ID_MATRICULA, ID_TRANSACCION, ID_CURSO, ID_ALUMNO, CUENTA_ALUMNO) 
+        VALUES (:id_matricula, :id_transaccion, :id_curso, :id_alumno, :cuenta_alumno)`;
+    const bindsMatricula = [ID_MATRICULA, ID_TRANSACCION, ID_CURSO, ID_ALUMNO, CUENTA_ALUMNO];
+    const resultMatricula = conexion.execute(sqlMatricula, bindsMatricula, { autoCommit: true });
+
+    res.json({ success: true, message: 'Curso matriculado correctamente' });
+    res.end();
+};

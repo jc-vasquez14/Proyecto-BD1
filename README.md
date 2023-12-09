@@ -32,11 +32,11 @@
 - [x] Mostrar los detalles de cada persona, id, nombre, apellido, fecha de nacimiento, cantidad de cursos completados, cantidad de cursos matriculados
 ## Flujos
 1. Flujo #1
-- La persona se registra
-- Luego la insertamos en la tabla alumnos
-- Mostramos los cursos disponibles y su detalle
-- Le matriculamos cursos
-- Registramos el curso matriculado junto con la transacción
-- Obtenemos el detalle de los cursos matriculados
-- Completamos los cursos
+- La persona se registra    
+- Luego la insertamos en la tabla alumnos   
+- Mostramos los cursos disponibles y su detalle    
+- Registramos la transaccion del curso que quiere matricular    
+- Le matriculamos cursos        
+- Obtenemos el detalle de los cursos matriculados   
+- Completamos los cursos        
 - Vemos el historial de cursos completados
