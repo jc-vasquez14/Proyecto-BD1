@@ -1,5 +1,5 @@
 import express from "express";
-import { cursosOrganizacion, eliminarCurso, nuevoCurso, verInstructoresxOrganizacion } from "../controllers/organizaciones.controller";
+import { alumnosOrganizacion, cursosOrganizacion, eliminarCurso, nuevoCurso, verInstructoresxOrganizacion } from "../controllers/organizaciones.controller";
 
 const router = express.Router();
 
@@ -18,5 +18,9 @@ router.post('/instructores', verInstructoresxOrganizacion);
 //Ver los instructores de cada organizacion
 //http://localhost:3000/organizaciones/cursos
 router.post('/cursos', cursosOrganizacion);
+
+//Alumnos del curso de una organizacion especifica
+//http://localhost:3000/organizaciones/alumnosOrganizacion
+router.post('/alumnosOrganizacion', alumnosOrganizacion);
 
 export default router;

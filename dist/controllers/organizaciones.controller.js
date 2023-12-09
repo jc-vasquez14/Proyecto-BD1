@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.cursosOrganizacion = exports.verInstructoresxOrganizacion = exports.eliminarCurso = exports.nuevoCurso = void 0;
+exports.alumnosOrganizacion = exports.cursosOrganizacion = exports.verInstructoresxOrganizacion = exports.eliminarCurso = exports.nuevoCurso = void 0;
 const database_1 = require("../utils/database");
 const nuevoCurso = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const conexion = yield (0, database_1.obtenerConexionOracle)();
@@ -64,3 +64,23 @@ const cursosOrganizacion = (req, res) => __awaiter(void 0, void 0, void 0, funct
     res.end();
 });
 exports.cursosOrganizacion = cursosOrganizacion;
+const alumnosOrganizacion = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const conexion = yield (0, database_1.obtenerConexionOracle)();
+    const { ID_ORGANIZACION } = req.body;
+    const sql = `select a.id_alumno, c.nombre, d.id_organizacion, d.nombre NombreOrganizacion
+                from tbl_alumnos a
+                inner join tbl_personas f
+                on(a.id_alumno = f.id_persona)
+                inner join tbl_matriculas b
+                on(a.id_alumno = b.id_alumno)
+                inner join tbl_cursos c
+                on(b.id_curso = c.id_curso)
+                inner join tbl_organizacion d
+                on(c.id_organizacion = d.id_organizacion)
+                where d.id_organizacion = :id`;
+    const binds = [ID_ORGANIZACION];
+    const result = conexion.execute(sql, binds, { autoCommit: true });
+    res.json((yield result).rows);
+    res.end();
+});
+exports.alumnosOrganizacion = alumnosOrganizacion;

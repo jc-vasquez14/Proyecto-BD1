@@ -57,3 +57,24 @@ export const cursosOrganizacion = async (req: Request, res: Response) => {
     res.json((await result).rows);
     res.end();
 }
+
+export const alumnosOrganizacion = async (req: Request, res: Response) => {
+    const conexion = await obtenerConexionOracle();
+    const { ID_ORGANIZACION } = req.body;
+    const sql = `select a.id_alumno, c.nombre, d.id_organizacion, d.nombre NombreOrganizacion
+                from tbl_alumnos a
+                inner join tbl_personas f
+                on(a.id_alumno = f.id_persona)
+                inner join tbl_matriculas b
+                on(a.id_alumno = b.id_alumno)
+                inner join tbl_cursos c
+                on(b.id_curso = c.id_curso)
+                inner join tbl_organizacion d
+                on(c.id_organizacion = d.id_organizacion)
+                where d.id_organizacion = :id`;
+    const binds = [ID_ORGANIZACION];
+    const result = conexion.execute(sql, binds, { autoCommit: true });
+
+    res.json((await result).rows);
+    res.end();
+}

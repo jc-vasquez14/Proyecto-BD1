@@ -18,4 +18,7 @@ router.post('/instructores', organizaciones_controller_1.verInstructoresxOrganiz
 //Ver los instructores de cada organizacion
 //http://localhost:3000/organizaciones/cursos
 router.post('/cursos', organizaciones_controller_1.cursosOrganizacion);
+//Alumnos del curso de una organizacion especifica
+//http://localhost:3000/organizaciones/alumnosOrganizacion
+router.post('/alumnosOrganizacion', organizaciones_controller_1.alumnosOrganizacion);
 exports.default = router;
