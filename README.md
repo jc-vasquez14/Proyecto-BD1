@@ -30,3 +30,13 @@
 - [x] Mostrar que cursos son gratis o pagados
 - [x] Mostrar el nombre de los cursos que estan disponibles
 - [x] Mostrar los detalles de cada persona, id, nombre, apellido, fecha de nacimiento, cantidad de cursos completados, cantidad de cursos matriculados
+## Flujos
+1. Flujo
+- La persona se registra
+- Luego la insertamos en la tabla alumnos
+- Mostramos los cursos disponibles y su detalle
+- Le matriculamos cursos
+- Registramos el curso matriculado junto con la transacción
+- Obtenemos el detalle de los cursos matriculados
+- Completamos los cursos
+- Vemos el historial de cursos completados
