@@ -37,9 +37,12 @@ router.get('/disponibles', cursos_controller_1.mostrarCursosDisponibles);
 //http://localhost:3000/cursos/todosCursos
 router.get('/todosCursos', cursos_controller_1.mostrarCursos);
 //TRANSACCION DE UN CURSO
-//http://localhost:3000/estudiantes/transaccion
+//http://localhost:3000/cursos/transaccion
 router.post('/transaccion', cursos_controller_1.transaccionCurso);
 //MATRICULA DE UN CURSO
-//http://localhost:3000/estudiantes/matricula
+//http://localhost:3000/cursos/matricula
 router.post('/matricula', cursos_controller_1.matricularCurso);
+//Filtrar cursos por tema
+//http://localhost:3000/cursos/filtrar
+router.post('/filtrar', cursos_controller_1.filtrarCurso);
 exports.default = router;

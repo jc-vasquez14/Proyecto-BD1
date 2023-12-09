@@ -1,6 +1,5 @@
 import express from "express";
-import { instructorLogin } from "../controllers/instructores.controller";
-import { obtenerEstadisticasInstructor } from "../controllers/estudiantes.controller";
+import { instructorLogin, obtenerEstadisticasInstructor } from "../controllers/instructores.controller";
 
 const router = express.Router();
 
@@ -9,7 +8,7 @@ const router = express.Router();
 router.post('/login', instructorLogin);
 
 //PARA SABER LOS DETALLES DE CADA INSTRUCTOR, ID, NOMBRE, APELLIDO, CURSOS ASIGNADOS
-//http://localhost:3000/estudiantes/detallesInstructor
+//http://localhost:3000/instructores/detallesInstructor
 router.get('/detallesInstructor', obtenerEstadisticasInstructor);
 
 export default router;

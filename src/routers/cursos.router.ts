@@ -1,7 +1,7 @@
 import express from "express";
 import { mostrarCursosConDetalles, mostrarCursosDisponibles, nuevoCurso, obtenerCursosPorOrganizacion,
      obtenerEstadisticasCursos, obtenerTiposCursos, obtenerTodosCursos, mostrarCursos,insertarOrganizacion,
-     insertarModulosPorCurso, transaccionCurso, matricularCurso } from "../controllers/cursos.controller";
+     insertarModulosPorCurso, transaccionCurso, matricularCurso, filtrarCurso } from "../controllers/cursos.controller";
 
 const router = express.Router();
 
@@ -46,14 +46,15 @@ router.get('/disponibles', mostrarCursosDisponibles);
 router.get('/todosCursos', mostrarCursos);
 
 //TRANSACCION DE UN CURSO
-//http://localhost:3000/estudiantes/transaccion
+//http://localhost:3000/cursos/transaccion
 router.post('/transaccion', transaccionCurso);
 
 //MATRICULA DE UN CURSO
-//http://localhost:3000/estudiantes/matricula
+//http://localhost:3000/cursos/matricula
 router.post('/matricula', matricularCurso);
 
-
-
+//Filtrar cursos por tema
+//http://localhost:3000/cursos/filtrar
+router.post('/filtrar', filtrarCurso);
 
 export default router;

@@ -2,6 +2,7 @@ import express, { Request, Response, Express } from 'express';
 import estudiantesRouter from "./routers/estudiantes.router";
 import instructoresRouter from "./routers/instructores.router";
 import cursosRouter from "./routers/cursos.router";
+import organizacionesRouter from "./routers/organizaciones.router";
 import * as oracledb from 'oracledb';
 
 const app:Express = express();
@@ -9,6 +10,7 @@ const PORT = 3000;
 
 app.use(express.json());
 
+app.use('/organizaciones', organizacionesRouter);
 app.use('/instructores', instructoresRouter);
 app.use('/estudiantes', estudiantesRouter);
 app.use('/cursos', cursosRouter);

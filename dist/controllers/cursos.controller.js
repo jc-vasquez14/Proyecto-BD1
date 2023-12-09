@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.matricularCurso = exports.transaccionCurso = exports.insertarModulosPorCurso = exports.insertarOrganizacion = exports.obtenerCursosPorOrganizacion = exports.obtenerTiposCursos = exports.obtenerEstadisticasCursos = exports.mostrarCursosConDetalles = exports.mostrarCursosDisponibles = exports.mostrarCursos = exports.nuevoCurso = exports.obtenerTodosCursos = void 0;
+exports.filtrarCurso = exports.matricularCurso = exports.transaccionCurso = exports.insertarModulosPorCurso = exports.insertarOrganizacion = exports.obtenerCursosPorOrganizacion = exports.obtenerTiposCursos = exports.obtenerEstadisticasCursos = exports.mostrarCursosConDetalles = exports.mostrarCursosDisponibles = exports.mostrarCursos = exports.nuevoCurso = exports.obtenerTodosCursos = void 0;
 const database_1 = require("../utils/database");
 const obtenerTodosCursos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const conexion = yield (0, database_1.obtenerConexionOracle)();
@@ -219,3 +219,17 @@ const matricularCurso = (req, res) => __awaiter(void 0, void 0, void 0, function
     res.end();
 });
 exports.matricularCurso = matricularCurso;
+const filtrarCurso = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const conexion = yield (0, database_1.obtenerConexionOracle)();
+    const { ID_TEMA } = req.body;
+    const sql = `select a.id_curso, a.nombre, b.nombre Tema 
+                    from tbl_cursos a
+                    inner join tbl_temas b
+                    on(a.id_tema = b.id_tema)
+                    where a.id_tema = :id`;
+    const binds = [ID_TEMA];
+    const result = conexion.execute(sql, binds, { autoCommit: true });
+    res.json((yield result).rows);
+    res.end();
+});
+exports.filtrarCurso = filtrarCurso;

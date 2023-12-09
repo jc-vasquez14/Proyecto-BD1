@@ -248,3 +248,20 @@ export const matricularCurso = async (req: Request, res: Response) => {
     res.json({ success: true, message: 'Curso matriculado correctamente' });
     res.end();
 };
+
+export const filtrarCurso = async (req: Request, res: Response) => {
+    
+    const conexion = await obtenerConexionOracle();
+
+    const { ID_TEMA } = req.body;
+    const sql = `select a.id_curso, a.nombre, b.nombre Tema 
+                    from tbl_cursos a
+                    inner join tbl_temas b
+                    on(a.id_tema = b.id_tema)
+                    where a.id_tema = :id`;
+    const binds = [ID_TEMA];
+    const result = conexion.execute(sql, binds, { autoCommit: true });
+
+    res.json((await result).rows);
+    res.end();
+};
